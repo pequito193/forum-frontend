@@ -1,0 +1,41 @@
+.header {
+    background-color: rgb(32, 32, 32);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px;
+}
+
+.trademark {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.logo {
+    width: 45px;
+}
+
+.website-name {
+    color: white;
+    font-size: 1.75rem;
+}
+
+ul {
+    display: flex;
+    gap: 16px;
+    list-style: none;
+}
+
+.links {
+    color: white;
+    font-size: 1.25rem;
+    padding: 8px;
+    border-radius: 4px;
+    background-color: rgb(32, 32, 32);
+}
+
+.links:hover {
+    cursor: pointer;
+    background-color: rgb(46, 46, 46);
+}
