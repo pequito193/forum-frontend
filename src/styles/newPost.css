@@ -1,0 +1,33 @@
+.new-post {
+    display: flex;
+    flex-direction: column;
+    width: 40vw;
+}
+
+.new-post-input {
+    resize: none;
+}
+
+.wrapper {
+    display: flex;
+    gap: 24px;
+}
+
+.no-underline,
+.no-underline-visited {
+    text-decoration: none;
+    color: white;
+}
+
+.submit-new-post {
+    border: none;
+    background-color: rgb(33, 90, 197);
+    color: white;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+.submit-new-post:hover {
+    cursor: pointer;
+    background-color: rgb(216, 134, 41);
+}
