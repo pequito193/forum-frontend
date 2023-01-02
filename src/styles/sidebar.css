@@ -4,6 +4,8 @@
     grid-column: 2;
     padding: 10px;
     border-radius: 4px;
+    display: flex;
+    flex-direction: column;
 }
 
 .sidebar-link,
