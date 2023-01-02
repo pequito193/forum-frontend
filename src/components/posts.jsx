@@ -13,7 +13,7 @@ function Posts() {
             if (res.ok) {
                 return res.json();
             }
-        }).then(jsonRes => setPostList(jsonRes.userStatus))
+        }).then(jsonRes => setPostList(jsonRes))
     },[]);
 
     for (let i = 0; i < postList.length; i++) {
