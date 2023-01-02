@@ -1,11 +1,23 @@
 .new-post {
     display: flex;
     flex-direction: column;
-    width: 40vw;
+    gap: 24px;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.new-post-title {
+    color: white;
+    text-align: center;
+    margin: 18px auto 30px;
 }
 
 .new-post-input {
     resize: none;
+    border: none;
+    background-color: rgb(226, 226, 226);
+    padding: 8px;
+    font-size: 16px;
 }
 
 .wrapper {
@@ -21,13 +33,12 @@
 
 .submit-new-post {
     border: none;
-    background-color: rgb(33, 90, 197);
+    background-color: rgb(218, 76, 41);
     color: white;
     padding: 10px;
-    border-radius: 4px;
 }
 
 .submit-new-post:hover {
     cursor: pointer;
-    background-color: rgb(216, 134, 41);
+    background-color: rgb(196, 62, 28);
 }
