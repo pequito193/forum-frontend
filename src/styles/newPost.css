@@ -7,17 +7,17 @@
 }
 
 .new-post-title {
-    color: white;
+    color: rgb(44, 44, 44);
     text-align: center;
     margin: 18px auto 30px;
 }
 
 .new-post-input {
     resize: none;
-    border: none;
-    background-color: rgb(226, 226, 226);
+    border: 1px solid rgb(197, 197, 197);
+    background-color: rgb(238, 238, 238);
     padding: 8px;
-    font-size: 16px;
+    font-size: 18px;
 }
 
 .wrapper {
