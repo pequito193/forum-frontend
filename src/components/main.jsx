@@ -5,6 +5,7 @@ import LogIn from "./logIn";
 import NewPost from "./newPost";
 import PostList from "./postList";
 import Sidebar from "./sidebar";
+import SignUp from "./signUp";
 
 function Main() {
 
@@ -14,7 +15,8 @@ function Main() {
                 <div className="main">
                     <Routes>
                         <Route exact path="/" element={<PostList />} />
-                        <Route exact path="/log-in" element={<LogIn />} />
+                        <Route exact path="/users/login" element={<LogIn />} />
+                        <Route exact path="/users/signup" element={<SignUp />} />
                         <Route exact path="/post/new" element={<NewPost />} />
                     </Routes>
                 </div>

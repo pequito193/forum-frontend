@@ -6,7 +6,7 @@ function PostList() {
 
     return (
         <React.Fragment>
-                <Posts />
+            {/* <Posts /> */}
         </React.Fragment>
     )
 }

@@ -12,17 +12,17 @@ function Sidebar() {
     useEffect(() => {
         if(isLoggedIn) {
             setHeaderMessage('Log Out');
-            setHeaderLink('/log-out');
+            setHeaderLink('/users/logout');
         } else {
             setHeaderMessage('Log In');
-            setHeaderLink('/log-in');
+            setHeaderLink('/users/login');
         }
-    })
+    }, [isLoggedIn])
 
     return (
         <React.Fragment>
             <div className="sidebar">
-                <p><Link to={headerLink} className='sidebar-link'>{headerMessage}</Link></p>
+                <Link to={headerLink} className='sidebar-link'>{headerMessage}</Link>
                 <Link to={'/post/new'} className='sidebar-link'>New Post</Link>
             </div>
         </React.Fragment>
