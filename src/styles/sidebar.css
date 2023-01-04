@@ -9,6 +9,12 @@
     align-items: center;
 }
 
+.sidebar-title {
+    color: rgb(29, 29, 29);
+    text-align: center;
+    margin: 28px auto 30px;
+}
+
 .sidebar-link,
 .sidebar-link:visited {
     color: rgb(0, 0, 0);
