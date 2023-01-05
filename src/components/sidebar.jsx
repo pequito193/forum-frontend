@@ -22,8 +22,9 @@ function Sidebar() {
     return (
         <React.Fragment>
             <div className="sidebar">
+                <h2 className="sidebar-title"></h2>
                 <Link to={headerLink} className='sidebar-link'>{headerMessage}</Link>
-                <Link to={'/post/new'} className='sidebar-link'>New Post</Link>
+                <Link to={'/posts/new'} className='sidebar-link'>New Post</Link>
             </div>
         </React.Fragment>
     )

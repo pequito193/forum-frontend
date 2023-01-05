@@ -7,7 +7,7 @@ function SignUp() {
     return(
         <React.Fragment>
             <h1 className="signup-title">Sign Up</h1>
-            <form className="signup-form" method='post' action="/users/signup">
+            <form className="signup-form" method='post' action="api/users/signup">
                 <input className="input" name="username" type="text" placeholder="Username" required={true}/>
                 <input className="input" name="email" type="email" placeholder="Email" required={true}/>
                 <input className="input" name="password" type="password" placeholder="Password" required={true}/>
