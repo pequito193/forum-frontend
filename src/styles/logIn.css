@@ -24,3 +24,8 @@
     text-decoration: none;
     color: blue;
 }
+
+.error-message {
+    color: red;
+    font-size: 16px;
+}
