@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 import './../styles/main.css'
 import Logout from "./logout";
@@ -9,14 +9,17 @@ import NewPost from "./newPost";
 import PostList from "./postList";
 import Sidebar from "./sidebar";
 import SignUp from "./signUp";
-import { useEffect } from "react";
+import jwt_decode from 'jwt-decode';
+import jwtDecode from "jwt-decode";
 
 function Main() {
 
     const [ errorMessage, setErrorMessage ] = useState('');
     const [ JWT, setJWT ] = useState(undefined);
     const [ isLoggedIn, setIsLoggedIn ] = useState(false);
+    const [ username, setUsername ] = useState('');
 
+    // Login function, fetches a login JSON web token from the server and stores it
     async function login(e) {
         e.preventDefault();
         try {
@@ -25,7 +28,6 @@ function Main() {
                 password: e.target[1].value
             })
             .then(response => {
-                console.log(response.data);
                 setErrorMessage(response.data.message)
                 setJWT(response.data.accessToken);
                 localStorage.setItem('JWT', JWT);
@@ -36,13 +38,32 @@ function Main() {
         }
     }
 
+    // Logout function, deletes JSON web token
+    function logout(e) {
+        setJWT(undefined);
+        localStorage.clear('JWT');
+    }
+
+    // Sets user status
     useEffect(() => {
-        if (localStorage.getItem('JWT') === undefined) {
+        if (localStorage.getItem('JWT') === null) {
             setIsLoggedIn(false);
         } else {
             setIsLoggedIn(true);
         }
     }, [JWT])
+
+    // Decodes JSON web token to obtain username
+    useEffect(() => {
+        if(!(localStorage.getItem('JWT') === null)) {
+            const decoded_jwt = jwt_decode(JWT, process.env.REACT_APP_SECRET_ACCESS_KEY)
+            setUsername(decoded_jwt.name);
+        } else {
+            setUsername('');
+        }
+    }, [isLoggedIn])
+
+
 
     return(
         <React.Fragment>
@@ -51,12 +72,12 @@ function Main() {
                     <Routes>
                         <Route exact path="/" element={<PostList JWT={JWT} />} />
                         <Route exact path="/users/login" element={<Login login={login} errorMessage={errorMessage} />} />
-                        <Route exact path='/users/logout' element={<Logout />} />
+                        <Route exact path='/users/logout' element={<Logout logout={logout} />} />
                         <Route exact path="/users/signup" element={<SignUp />} />
                         <Route exact path="/posts/new" element={<NewPost JWT={JWT} />} />
                     </Routes>
                 </div>
-                <Sidebar JWT={JWT} isLoggedIn={isLoggedIn} />
+                <Sidebar username={username} isLoggedIn={isLoggedIn} />
             </div>                
         </React.Fragment>
     )

@@ -5,7 +5,7 @@ import './../styles/sidebar.css'
 
 function Sidebar(props) {
 
-    const { JWT, isLoggedIn } = props;
+    const { username, isLoggedIn } = props;
 
     const [ headerMessage, setHeaderMessage ] = useState('');
     const [ headerLink, setHeaderLink ] = useState('');
@@ -23,7 +23,10 @@ function Sidebar(props) {
     return (
         <React.Fragment>
             <div className="sidebar">
-                <h2 className="sidebar-title"></h2>
+                <div className="sidebar-title-wrapper">
+                    <h2 className="sidebar-title1">Welcome</h2>
+                    <h2 className="sidebar-title2">{username}</h2>
+                </div>
                 <Link to={headerLink} className='sidebar-link'>{headerMessage}</Link>
                 <Link to={'/posts/new'} className='sidebar-link'>New Post</Link>
             </div>
