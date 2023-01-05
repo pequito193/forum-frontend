@@ -1,15 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import './../styles/logIn.css';
+import './../styles/login.css';
 
-function LogIn(props) {
+function Login(props) {
 
-    const { getJWT, JWT, errorMessage } = props;
+    const { login, errorMessage } = props;
     
     return(
         <React.Fragment>
             <h1 className="login-title">Log In</h1>
-            <form className="login-form" method='post' onSubmit={getJWT}>
+            <form className="login-form" method='post' onSubmit={login}>
                 <input className="input" name="username" type="text" placeholder="Username" required={true}/>
                 <input className="input" name="password" type="password" placeholder="Password" required={true}/>
                 <p className="error-message">{errorMessage}</p>
@@ -24,4 +24,4 @@ function LogIn(props) {
     )
 }
 
-export default LogIn;
+export default Login;

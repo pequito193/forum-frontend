@@ -3,9 +3,10 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import './../styles/sidebar.css'
 
-function Sidebar() {
+function Sidebar(props) {
 
-    const [ isLoggedIn, setIsLoggedIn ] = useState(false);
+    const { JWT, isLoggedIn } = props;
+
     const [ headerMessage, setHeaderMessage ] = useState('');
     const [ headerLink, setHeaderLink ] = useState('');
 
