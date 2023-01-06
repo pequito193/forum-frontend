@@ -10,7 +10,6 @@ import PostList from "./postList";
 import Sidebar from "./sidebar";
 import SignUp from "./signUp";
 import jwt_decode from 'jwt-decode';
-import jwtDecode from "jwt-decode";
 
 function Main() {
 

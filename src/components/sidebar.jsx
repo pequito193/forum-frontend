@@ -27,8 +27,13 @@ function Sidebar(props) {
                     <h2 className="sidebar-title1">Welcome</h2>
                     <h2 className="sidebar-title2">{username}</h2>
                 </div>
-                <Link to={headerLink} className='sidebar-link'>{headerMessage}</Link>
-                <Link to={'/posts/new'} className='sidebar-link'>New Post</Link>
+                <div className="sidebar-wrapper">
+                    <Link to={headerLink} className='sidebar-link'>{headerMessage}</Link>
+                    <Link to={'/posts/new'} className='sidebar-link'>New Post</Link>
+                    <Link to={'/posts/new'} className='sidebar-link'>My Posts</Link>
+                    <Link to={'/posts/new'} className='sidebar-link'>My Comments</Link>
+                </div>
+                <h2 className="sidebar-title1">Settings</h2>
             </div>
         </React.Fragment>
     )

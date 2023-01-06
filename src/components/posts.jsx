@@ -9,7 +9,7 @@ function Posts() {
     const posts = [];
 
     useEffect(() => {
-        fetch('/post/').then(res => {
+        fetch('/posts/').then(res => {
             if (res.ok) {
                 return res.json();
             }
