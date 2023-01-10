@@ -10,6 +10,7 @@ import PostList from "./postList";
 import Sidebar from "./sidebar";
 import SignUp from "./signUp";
 import jwt_decode from 'jwt-decode';
+import { redirect } from "react-router-dom";
 
 function Main() {
 
@@ -22,7 +23,7 @@ function Main() {
     async function login(e) {
         e.preventDefault();
         try {
-            const response = await axios.post('/users/login', {
+            await axios.post('/users/login', {
                 username: e.target[0].value,
                 password: e.target[1].value
             })
@@ -30,6 +31,7 @@ function Main() {
                 setErrorMessage(response.data.message)
                 setJWT(response.data.accessToken);
                 localStorage.setItem('JWT', JWT);
+                return redirect('/');
             })
         }
         catch(error) {
@@ -41,11 +43,12 @@ function Main() {
     function logout(e) {
         setJWT(undefined);
         localStorage.clear('JWT');
+        return redirect('/');
     }
 
     // Sets user status
     useEffect(() => {
-        if (localStorage.getItem('JWT') === null) {
+        if (localStorage.getItem('JWT') === null || localStorage.getItem('JWT') === undefined) {
             setIsLoggedIn(false);
         } else {
             setIsLoggedIn(true);
@@ -54,7 +57,7 @@ function Main() {
 
     // Decodes JSON web token to obtain username
     useEffect(() => {
-        if(!(localStorage.getItem('JWT') === null)) {
+        if(!(localStorage.getItem('JWT') === null || localStorage.getItem('JWT') === undefined)) {
             const decoded_jwt = jwt_decode(JWT, process.env.REACT_APP_SECRET_ACCESS_KEY)
             setUsername(decoded_jwt.name);
         } else {
@@ -62,8 +65,7 @@ function Main() {
         }
     }, [isLoggedIn])
 
-
-
+    
     return(
         <React.Fragment>
             <div className="background">
