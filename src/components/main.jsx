@@ -10,7 +10,7 @@ import PostList from "./postList";
 import Sidebar from "./sidebar";
 import SignUp from "./signUp";
 import jwt_decode from 'jwt-decode';
-import { redirect } from "react-router-dom";
+import { useHistory } from 'react-router-dom'
 
 function Main() {
 
@@ -31,7 +31,6 @@ function Main() {
                 setErrorMessage(response.data.message)
                 setJWT(response.data.accessToken);
                 localStorage.setItem('JWT', JWT);
-                return redirect('/');
             })
         }
         catch(error) {
@@ -41,9 +40,9 @@ function Main() {
 
     // Logout function, deletes JSON web token
     function logout(e) {
+        redirect('/');
         setJWT(undefined);
         localStorage.clear('JWT');
-        return redirect('/');
     }
 
     // Sets user status
@@ -65,14 +64,14 @@ function Main() {
         }
     }, [isLoggedIn])
 
-    
+
     return(
         <React.Fragment>
             <div className="background">
                 <div className="main">
                     <Routes>
                         <Route exact path="/" element={<PostList JWT={JWT} />} />
-                        <Route exact path="/users/login" element={<Login login={login} errorMessage={errorMessage} />} />
+                        <Route exact path="/users/login" element={<Login login={login} errorMessage={errorMessage} isLoggedIn={isLoggedIn} />} />
                         <Route exact path='/users/logout' element={<Logout logout={logout} />} />
                         <Route exact path="/users/signup" element={<SignUp />} />
                         <Route exact path="/posts/new" element={<NewPost JWT={JWT} />} />

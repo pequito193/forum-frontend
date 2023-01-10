@@ -1,10 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import './../styles/login.css';
+import { redirect } from "react-router-dom";
+import { useEffect } from "react";
 
 function Login(props) {
 
-    const { login, errorMessage } = props;
+    const { login, errorMessage, isLoggedIn } = props;
+
+    useEffect(()=> {
+        redirect('/');
+    },[isLoggedIn])
     
     return(
         <React.Fragment>
