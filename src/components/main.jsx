@@ -10,27 +10,51 @@ import PostList from "./postList";
 import Sidebar from "./sidebar";
 import SignUp from "./signUp";
 import jwt_decode from 'jwt-decode';
-import { useHistory } from 'react-router-dom'
+import { useNavigate } from "react-router-dom";
 
 function Main() {
 
     const [ errorMessage, setErrorMessage ] = useState('');
-    const [ JWT, setJWT ] = useState(undefined);
+    const [ JWT, setJWT ] = useState(null);
     const [ isLoggedIn, setIsLoggedIn ] = useState(false);
     const [ username, setUsername ] = useState('');
 
+    const navigate = useNavigate();
+
     // Login function, fetches a login JSON web token from the server and stores it
-    async function login(e) {
+    function login(e) {
         e.preventDefault();
         try {
-            await axios.post('/users/login', {
+            axios.post('/users/login', {
                 username: e.target[0].value,
                 password: e.target[1].value
             })
             .then(response => {
-                setErrorMessage(response.data.message)
+                setErrorMessage(response.data.message);
                 setJWT(response.data.accessToken);
-                localStorage.setItem('JWT', JWT);
+            })
+        }
+        catch(error) {
+            console.log(error);
+        }
+    }
+
+    // Create a new user
+    function signup(e) {
+        e.preventDefault();
+        try {
+            axios.post('/users/signup', {
+                username: e.target[0].value,
+                username_lowercase: e.target[0].value.toLowerCase(),
+                email: e.target[1].value,
+                password: e.target[2].value,
+                confirmPassword: e.target[3].value
+            })
+            .then(response => {
+                setErrorMessage(response.data.message);
+                if (response.data.result === 'Success') {
+                    navigate('/users/login');
+                }
             })
         }
         catch(error) {
@@ -40,14 +64,17 @@ function Main() {
 
     // Logout function, deletes JSON web token
     function logout(e) {
-        redirect('/');
         setJWT(undefined);
-        localStorage.clear('JWT');
+        localStorage.removeItem('JWT');
+        navigate('/');
     }
 
     // Sets user status
     useEffect(() => {
-        if (localStorage.getItem('JWT') === null || localStorage.getItem('JWT') === undefined) {
+        if (JWT) {
+            localStorage.setItem('JWT', JWT);
+        }
+        if (localStorage.getItem('JWT') === null) {
             setIsLoggedIn(false);
         } else {
             setIsLoggedIn(true);
@@ -56,7 +83,7 @@ function Main() {
 
     // Decodes JSON web token to obtain username
     useEffect(() => {
-        if(!(localStorage.getItem('JWT') === null || localStorage.getItem('JWT') === undefined)) {
+        if(!(localStorage.getItem('JWT') === null)) {
             const decoded_jwt = jwt_decode(JWT, process.env.REACT_APP_SECRET_ACCESS_KEY)
             setUsername(decoded_jwt.name);
         } else {
@@ -73,7 +100,7 @@ function Main() {
                         <Route exact path="/" element={<PostList JWT={JWT} />} />
                         <Route exact path="/users/login" element={<Login login={login} errorMessage={errorMessage} isLoggedIn={isLoggedIn} />} />
                         <Route exact path='/users/logout' element={<Logout logout={logout} />} />
-                        <Route exact path="/users/signup" element={<SignUp />} />
+                        <Route exact path="/users/signup" element={<SignUp signup={signup} errorMessage={errorMessage} />} />
                         <Route exact path="/posts/new" element={<NewPost JWT={JWT} />} />
                     </Routes>
                 </div>

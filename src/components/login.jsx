@@ -1,16 +1,20 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import './../styles/login.css';
-import { redirect } from "react-router-dom";
 import { useEffect } from "react";
+import { useNavigate } from 'react-router-dom';
 
 function Login(props) {
 
     const { login, errorMessage, isLoggedIn } = props;
 
-    useEffect(()=> {
-        redirect('/');
-    },[isLoggedIn])
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (isLoggedIn) {
+            navigate('/');
+        }
+    }, [isLoggedIn, navigate])
     
     return(
         <React.Fragment>

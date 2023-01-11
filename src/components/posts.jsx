@@ -26,7 +26,7 @@ function Posts() {
         )
 
     }
-    console.log(posts)
+    // console.log(posts)
 
     return posts;
 }
