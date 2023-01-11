@@ -1,10 +1,10 @@
 .header {
-    background-color: rgb(48, 48, 48);
+    background-color: rgb(44, 44, 44);
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 8px 18px;
-    box-shadow: rgba(11, 11, 11, 0.35) 0px 30px 60px -12px inset, rgba(11, 11, 11, 0.3) 0px 18px 36px -18px inset;
+    box-shadow: #1b1b1b 4px 4px 6px;
     position: relative;
 }
 
@@ -73,8 +73,19 @@
     background-color: rgb(69, 69, 69);
 }
 
+.header-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 44px;
+}
+
 .settings {
     width: 24px;
     padding: 5px 3px 0;
     filter: invert(100%);
+}
+
+.username {
+    color: rgb(230, 230, 230);
+    font-size: 20px;
 }

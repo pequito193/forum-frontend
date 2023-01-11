@@ -1,0 +1,20 @@
+.subHeader {
+    background-color: rgb(32, 33, 36);
+    grid-column: 2;
+    padding: 18px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-bottom: 1px solid rgb(58, 62, 65);
+}
+
+.subHeader-link,
+.subHeader-link:visited {
+    color: rgb(213, 213, 213);
+    padding: 8px;
+    text-decoration: none;
+}
+
+.subHeader-link:hover {
+    background-color: rgb(45, 45, 47);
+}

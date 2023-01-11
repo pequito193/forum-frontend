@@ -1,8 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import './../styles/header.css';
+import SubHeader from "./subHeader";
 
-function Header() {
+function Header(props) {
+
+    const { username, isLoggedIn } = props;
 
     return (
         <React.Fragment>
@@ -14,8 +17,12 @@ function Header() {
                         <input type="text" className="search-input" required={true} placeholder="Search..."/>
                     </form>
                 </div>
-                <p className="links"><img className="settings" src={require('./../assets/settings.png')} alt="settings" /></p>
+                <div className="header-wrapper">
+                    <p className="username">{username}</p>
+                    <p className="links"><img className="settings" src={require('./../assets/settings.png')} alt="settings" /></p>
+                </div>
             </div>
+            <SubHeader username={username} isLoggedIn={isLoggedIn} />
         </React.Fragment>
     );
 }
