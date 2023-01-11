@@ -1,5 +1,5 @@
 .signup-title {
-    color: rgb(44, 44, 44);
+    color: rgb(170, 170, 170);
     text-align: center;
     margin: 28px auto 30px;
 }
@@ -22,5 +22,5 @@
 .login-link,
 .login-link:visited {
     text-decoration: none;
-    color: blue;
+    color: rgb(89, 89, 232);
 }

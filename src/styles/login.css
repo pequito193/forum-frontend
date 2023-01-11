@@ -1,5 +1,5 @@
 .login-title {
-    color: rgb(44, 44, 44);
+    color: rgb(170, 170, 170);
     text-align: center;
     margin: 28px auto 30px;
 }
@@ -19,10 +19,14 @@
     font-size: 18px;
 }
 
+.question {
+    color: rgb(221, 221, 221);
+}
+
 .signup-link,
 .signup-link:visited {
     text-decoration: none;
-    color: blue;
+    color: rgb(89, 89, 232);
 }
 
 .error-message {

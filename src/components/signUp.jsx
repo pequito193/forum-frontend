@@ -16,7 +16,7 @@ function SignUp(props) {
                 <input className="input" name="confirmPassword" type="password" placeholder="Confirm Password" required={true}/>
                 <p className="error-message">{errorMessage}</p>
                 <div className="no-account">
-                    <p>Already have an account?
+                    <p className="question">Already have an account?
                         <Link to={'/users/login'} className='login-link'> Log In </Link>
                     </p>
                 </div>

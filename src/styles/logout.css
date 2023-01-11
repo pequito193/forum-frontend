@@ -1,4 +1,5 @@
 .logout-message {
+    color: rgb(212, 212, 212);
     text-align: center;
     margin: 50px 12px;
     font-size: 24px;
@@ -13,7 +14,7 @@
 
 .logout-button {
     border: none;
-    background-color: rgb(48, 48, 48);
+    background-color: rgb(196, 62, 28);
     color: white;
     padding: 10px 14px;
     font-weight: bold;
@@ -21,7 +22,7 @@
 
 .logout-button:hover {
     cursor: pointer;
-    background-color: rgb(196, 62, 28);
+    background-color: rgb(165, 48, 19);
 }
 
 .logout-link,

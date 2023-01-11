@@ -24,7 +24,7 @@ function Login(props) {
                 <input className="input" name="password" type="password" placeholder="Password" required={true}/>
                 <p className="error-message">{errorMessage}</p>
                 <div className="no-account">
-                    <p>Don't have an account yet?
+                    <p className="question">Don't have an account yet?
                         <Link to={'/users/signup'} className='signup-link'> Sign Up </Link>
                     </p>
                 </div>

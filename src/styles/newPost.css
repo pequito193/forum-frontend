@@ -7,7 +7,7 @@
 }
 
 .new-post-title {
-    color: rgb(44, 44, 44);
+    color: rgb(170, 170, 170);
     text-align: center;
     margin: 18px auto 30px;
 }
@@ -15,7 +15,6 @@
 .input {
     resize: none;
     border: 1px solid rgb(197, 197, 197);
-    background-color: rgb(238, 238, 238);
     padding: 8px;
     font-size: 18px;
 }
@@ -33,7 +32,7 @@
 
 .submit {
     border: none;
-    background-color: rgb(67, 67, 67);
+    background-color: rgb(196, 62, 28);
     color: white;
     padding: 10px 14px;
     border-radius: 2px;
@@ -42,5 +41,5 @@
 
 .submit:hover {
     cursor: pointer;
-    background-color: rgb(196, 62, 28);
+    background-color: rgb(165, 48, 19);
 }
