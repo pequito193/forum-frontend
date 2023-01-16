@@ -1,34 +1,35 @@
+import axios from "axios";
 import React from "react";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import './../styles/postList.css';
 
 function Posts() {
 
-    const [ postList, setPostList ] = useState([]);
-
     const posts = [];
 
     useEffect(() => {
-        fetch('/posts/').then(res => {
-            if (res.ok) {
-                return res.json();
+        axios.get('/posts/')
+        .then(response => {
+            for (let i = 0; i < response.data.data.length; i++) {
+                posts.push(
+                    response.data.data[i]
+                    // <div className='post' key={response.data.data[i]}>
+                    //     <p className="post-title">{response.data.data[i].title}</p>
+                    //     <p className="post-content">{response.data.data[i].content}</p>
+                    //     <p className="post-date">{response.data.data[i].date}</p>
+                    //     <p className="post-likes">{response.data.data[i].likes}</p>
+                    // </div>
+                )
             }
-        }).then(jsonRes => setPostList(jsonRes))
-    },[]);
-
-    for (let i = 0; i < postList.length; i++) {
-
-        posts.push(
-            <div className='post' key={postList[i]}>
-                <p className="post-title">{postList.title}</p>
-                <p className="post-likes">{postList.likes}</p>
-            </div>
-        )
-
-    }
-    // console.log(posts)
-
-    return posts;
+            console.log(response.data.data, posts)
+        })
+    }, []);
+   
+    return (
+        <React.Fragment>
+            {posts}
+        </React.Fragment>
+    );
 }
 
 export default Posts;
