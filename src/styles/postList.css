@@ -1,3 +1,33 @@
 .post {
-    color: white;
+    background-color: rgb(50, 50, 50);
+    padding: 12px 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    box-shadow: 0 0 6px inset rgb(35, 35, 35);
+}
+
+.post-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.post-title {
+    color: rgb(225, 225, 225);
+    font-size: 24px;
+}
+
+.post-content {
+    color: rgb(225, 225, 225);
+}
+
+.post-info-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.post-date {
+    color: rgb(225, 225, 225);
 }
