@@ -19,7 +19,8 @@ function NewPost(props) {
                 jwt: JWT
             })
             .then(response => {
-                if (response.data.result === 'Success') {
+                console.log(response.data)
+                if (response.data.message === 'Success') {
                     navigate('/');
                 }
             })
