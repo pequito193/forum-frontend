@@ -6,6 +6,7 @@ import Login from "./login";
 import NewPost from "./newPost";
 import PostList from "./postList";
 import SignUp from "./signUp";
+import Post from "./post";
 
 function Main(props) {
 
@@ -21,6 +22,7 @@ function Main(props) {
                         <Route exact path='/users/logout' element={<Logout logout={logout} />} />
                         <Route exact path="/users/signup" element={<SignUp signup={signup} errorMessage={errorMessage} />} />
                         <Route exact path="/posts/new" element={<NewPost JWT={JWT} />} />
+                        <Route exact path="/posts/:id" element={<Post />} />
                     </Routes>
                 </div>
             </div>                
