@@ -25,7 +25,6 @@ function Post() {
     useEffect(() => {
         axios.get(`/posts/${id}`)
         .then(response => {
-            console.log(response.data)
             setPost(response.data.post);
             setComment(response.data.comments);
         })
