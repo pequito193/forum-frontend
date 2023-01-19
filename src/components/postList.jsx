@@ -9,12 +9,15 @@ function PostList() {
     const [ posts, setPosts ] = useState([])
 
     let dateFormat = {
-        hour: 'numeric',
-        hour12: false,
-        minute: 'numeric',
         day: 'numeric',
         month: 'numeric',
         year: 'numeric'
+    }
+
+    let hourFormat = {
+        hour: 'numeric',
+        hour12: false,
+        minute: 'numeric'
     }
 
     useEffect(() => {
@@ -34,7 +37,7 @@ function PostList() {
                             <p className="post-content">{post.content}</p>
                             <div className="post-info-wrapper">
                                 <p className="post-likes">{post.likes}</p>
-                                <p className="post-date">{new Date(post.date).toLocaleDateString('en-US', dateFormat)}</p>
+                                <p className="post-date">{post.username}, {new Date(post.date).toLocaleTimeString('en-US', hourFormat)}, {new Date(post.date).toLocaleDateString('en-US', dateFormat)}</p>
                             </div>
                         </Link>
                     )
