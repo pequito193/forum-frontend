@@ -89,3 +89,15 @@
     color: rgb(230, 230, 230);
     font-size: 20px;
 }
+
+@media (max-width: 500px) {
+    .header-wrapper {
+        gap: 20px;
+    }
+}
+
+@media (max-width: 440px) {
+    .username {
+        display: none;
+    }
+}
