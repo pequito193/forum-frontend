@@ -90,7 +90,7 @@ function App() {
   return (
     <React.Fragment>
       <Header username={username} isLoggedIn={isLoggedIn} />
-      <Main errorMessage={errorMessage} isLoggedIn={isLoggedIn} JWT={JWT} login={login} signup={signup} logout={logout} />
+      <Main username={username} errorMessage={errorMessage} isLoggedIn={isLoggedIn} JWT={JWT} login={login} signup={signup} logout={logout} />
     </React.Fragment>
   );
 }
