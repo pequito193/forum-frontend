@@ -25,7 +25,7 @@ function PostList(props) {
     useEffect(() => {
         axios.get('/posts/')
         .then(response => {
-            setPosts(response.data.data)
+            setPosts(response.data.posts)
         })
     }, []);
 
@@ -34,8 +34,11 @@ function PostList(props) {
         const id = e.target.id;
         if (image.match(/\/media\/(.*?)\./)[1] === 'heart_empty') {
             axios.post(`/posts/likes/${id}`, {
-                info: 'Like',
-                jwt: JWT
+                info: 'Like'
+            }, {
+                headers: {
+                    Authorization: `Bearer ${JWT}`
+                }
             })
             .then(response => {
                 if (response.data.message === 'Success') {
@@ -45,8 +48,11 @@ function PostList(props) {
         }
         else if (image.match(/\/media\/(.*?)\./)[1] === 'heart_full') {
             axios.post(`/posts/likes/${id}`, {
-                info: 'Dislike',
-                jwt: JWT
+                info: 'Dislike'
+            }, {
+                headers: {
+                    Authorization: `Bearer ${JWT}`
+                }
             })
             .then(response => {
                 if (response.data.message === 'Success') {

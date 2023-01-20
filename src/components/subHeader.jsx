@@ -5,7 +5,7 @@ import './../styles/subHeader.css'
 
 function SubHeader(props) {
 
-    const { isLoggedIn } = props;
+    const { isLoggedIn, username } = props;
 
     const [ headerMessage, setHeaderMessage ] = useState('');
     const [ headerLink, setHeaderLink ] = useState('');
@@ -25,7 +25,7 @@ function SubHeader(props) {
         <React.Fragment>
             <div className="subHeader">
                 <Link to={isLoggedIn ? '/posts/new' : '/users/login'} className='subHeader-link'>New Post</Link>
-                <Link to={isLoggedIn ? '/posts/new' : '/users/login'} className='subHeader-link'>My Posts</Link>
+                <Link to={isLoggedIn ? `/users/posts/${username}` : '/users/login'} className='subHeader-link'>My Posts</Link>
                 <Link to={isLoggedIn ? '/posts/new' : '/users/login'} className='subHeader-link'>My Comments</Link>
                 <Link to={headerLink} className='subHeader-link'>{headerMessage}</Link>
             </div>

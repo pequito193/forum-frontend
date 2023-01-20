@@ -15,8 +15,11 @@ function NewPost(props) {
         try {
             axios.post('/posts/new', {
                 title: e.target[0].value,
-                content: e.target[1].value,
-                jwt: JWT
+                content: e.target[1].value
+            }, {
+                headers: {
+                    Authorization: `Bearer ${JWT}`
+                },
             })
             .then(response => {
                 if (response.data.message === 'Success') {
