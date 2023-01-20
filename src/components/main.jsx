@@ -10,14 +10,14 @@ import Post from "./post";
 
 function Main(props) {
 
-    const { errorMessage, isLoggedIn, logout, login, signup, JWT } = props;
+    const { username, errorMessage, isLoggedIn, logout, login, signup, JWT } = props;
 
     return(
         <React.Fragment>
             <div className="background">
                 <div className="main">
                     <Routes>
-                        <Route exact path="/" element={<PostList props={props} />} />
+                        <Route exact path="/" element={<PostList username={username} JWT={JWT} isLoggedIn={isLoggedIn} />} />
                         <Route exact path="/users/login" element={<Login isLoggedIn={isLoggedIn} errorMessage={errorMessage} login={login} />} />
                         <Route exact path='/users/logout' element={<Logout logout={logout} />} />
                         <Route exact path="/users/signup" element={<SignUp signup={signup} errorMessage={errorMessage} />} />
