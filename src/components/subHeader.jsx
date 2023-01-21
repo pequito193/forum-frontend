@@ -26,7 +26,6 @@ function SubHeader(props) {
             <div className="subHeader">
                 <Link to={isLoggedIn ? '/posts/new' : '/users/login'} className='subHeader-link'>New Post</Link>
                 <Link to={isLoggedIn ? `/users/posts/${username}` : '/users/login'} className='subHeader-link'>My Posts</Link>
-                <Link to={isLoggedIn ? '/posts/new' : '/users/login'} className='subHeader-link'>My Comments</Link>
                 <Link to={headerLink} className='subHeader-link'>{headerMessage}</Link>
             </div>
         </React.Fragment>

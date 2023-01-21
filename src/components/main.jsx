@@ -11,18 +11,18 @@ import MyPosts from "./myPosts";
 
 function Main(props) {
 
-    const { username, errorMessage, isLoggedIn, logout, login, signup, JWT } = props;
+    const { likeOrDislike, username, errorMessage, isLoggedIn, logout, login, signup, JWT } = props;
 
     return(
         <React.Fragment>
             <div className="background">
                 <div className="main">
                     <Routes>
-                        <Route exact path="/" element={<PostList username={username} JWT={JWT} isLoggedIn={isLoggedIn} />} />
+                        <Route exact path="/" element={<PostList username={username} likeOrDislike={likeOrDislike} isLoggedIn={isLoggedIn} />} />
                         <Route exact path="/users/login" element={<Login isLoggedIn={isLoggedIn} errorMessage={errorMessage} login={login} />} />
                         <Route exact path="/users/logout" element={<Logout logout={logout} />} />
                         <Route exact path="/users/signup" element={<SignUp signup={signup} errorMessage={errorMessage} />} />
-                        <Route exact path="/users/posts/:user" element={<MyPosts JWT={JWT} username={username} />} />
+                        <Route exact path="/users/posts/:user" element={<MyPosts likeOrDislike={likeOrDislike} JWT={JWT} username={username} />} />
                         <Route exact path="/posts/new" element={<NewPost JWT={JWT} />} />
                         <Route exact path="/posts/:id" element={<Post />} />
                     </Routes>
