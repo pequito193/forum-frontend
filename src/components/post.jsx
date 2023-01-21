@@ -2,11 +2,14 @@ import React from "react";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
+import './../styles/post.css'
 
-function Post() {
+function Post(props) {
+
+    const { username, likeOrDislike } = props;
 
     const [ post, setPost ] = useState([]);
-    const [ comments, setComment ] = useState([]);
+    const [ comments, setComments ] = useState([]);
 
     const { id } = useParams();
 
@@ -26,7 +29,7 @@ function Post() {
         axios.get(`/posts/${id}`)
         .then(response => {
             setPost(response.data.post);
-            setComment(response.data.comments);
+            setComments(response.data.comments);
         })
     }, [])
 
@@ -35,10 +38,13 @@ function Post() {
             {post.map((post, i) => {
                 return(
                     <div className="post-complete" key={post.id}>
-                        <p className="post-title">{post.title}</p>
-                        <p className="post-content">{post.content}</p>
-                        <div className="post-info-wrapper">
-                            <p className="post-likes">{post.likes}</p>
+                        <p className="post-complete-title">{post.title}</p>
+                        <p className="post-complete-content">{post.content}</p>
+                        <div className="post-complete-info-wrapper">
+                            <div className="post-complete-likes-wrapper">
+                                <img src={require(`./../assets/${post.liked_by.includes(username) ? 'heart_full' : 'heart_empty'}.png`)} id={post.id} onClick={likeOrDislike} className='like-button' alt="like button" />
+                                <p className="post-complete-likes">{post.likes}</p>
+                            </div>
                             <p className="post-date">{post.username}, {new Date(post.date).toLocaleTimeString('en-US', hourFormat)}, {new Date(post.date).toLocaleDateString('en-US', dateFormat)}</p>
                         </div>
                     </div>

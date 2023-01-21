@@ -65,6 +65,40 @@ function App() {
         navigate('/');
     }
 
+    // Function that handles liking and disliking posts
+    function likeOrDislike(e) {
+        const image = e.target.src;
+        const id = e.target.id;
+        if (image.match(/\/media\/(.*?)\./)[1] === 'heart_empty') {
+            axios.post(`/posts/likes/${id}`, {
+                info: 'Like'
+            }, {
+                headers: {
+                    Authorization: `Bearer ${JWT}`
+                }
+            })
+            .then(response => {
+                if (response.data.message === 'Success') {
+                    window.location.reload();
+                }
+            })
+        }
+        else if (image.match(/\/media\/(.*?)\./)[1] === 'heart_full') {
+            axios.post(`/posts/likes/${id}`, {
+                info: 'Dislike'
+            }, {
+                headers: {
+                    Authorization: `Bearer ${JWT}`
+                }
+            })
+            .then(response => {
+                if (response.data.message === 'Success') {
+                    window.location.reload();
+                }
+            })
+        }
+    }
+
     // Sets user status
     useEffect(() => {
         if (JWT) {
@@ -90,7 +124,7 @@ function App() {
   return (
     <React.Fragment>
       <Header username={username} isLoggedIn={isLoggedIn} />
-      <Main username={username} errorMessage={errorMessage} isLoggedIn={isLoggedIn} JWT={JWT} login={login} signup={signup} logout={logout} />
+      <Main likeOrDislike={likeOrDislike} username={username} errorMessage={errorMessage} isLoggedIn={isLoggedIn} JWT={JWT} login={login} signup={signup} logout={logout} />
     </React.Fragment>
   );
 }

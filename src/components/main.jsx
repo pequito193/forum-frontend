@@ -24,7 +24,7 @@ function Main(props) {
                         <Route exact path="/users/signup" element={<SignUp signup={signup} errorMessage={errorMessage} />} />
                         <Route exact path="/users/posts/:user" element={<MyPosts likeOrDislike={likeOrDislike} JWT={JWT} username={username} />} />
                         <Route exact path="/posts/new" element={<NewPost JWT={JWT} />} />
-                        <Route exact path="/posts/:id" element={<Post />} />
+                        <Route exact path="/posts/:id" element={<Post username={username} likeOrDislike={likeOrDislike} />} />
                     </Routes>
                 </div>
             </div>                
