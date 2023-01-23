@@ -36,7 +36,7 @@ function Post(props) {
 
     function newComment(e) {
         e.preventDefault();
-        axios.post('/posts/comments/new', {
+        axios.post('/comments/new', {
             postID: id,
             content: e.target[0].value
         }, {
@@ -74,19 +74,25 @@ function Post(props) {
                     </div>
                 )
             })}
+            {isLoggedIn ?
             <form onSubmit={newComment} method='post' className="new-comment-form">
                 <p className="new-comment-form-description">Add a Comment</p>
                 <textarea name="new-comment-input" className="new-comment-input" id="" cols="30" rows="4" required={true} placeholder="Write your comment here"></textarea>
                 <button type="submit" className="submit new-comment-button">Create</button>
             </form>
+            :
+            <form onSubmit={newComment} method='post' className="new-comment-form">
+                <p className="new-comment-form-description"><Link to={'/users/login'} className='login-link'>Login</Link> to leave a comment!</p>
+            </form>
+            }
             <div className="comment-wrapper">
                 {comments.map((comment, i) => {
                     return(
-                        <div  className='comment' key={comment.postID}>
+                        <div className='comment' key={comment.commentID}>
                             <p className="comment-user">{comment.username}, {new Date(comment.date).toLocaleDateString('en-US', dateFormat)}</p>
                             <p className="comment-content">{comment.content}</p>
                             <div className="comment-info-wrapper">
-                                <img src={require(`./../assets/${comment.liked_by.includes(username) ? 'heart_full' : 'heart_empty'}.png`)} id={comment.postID} onClick={likeOrDislikeComment} className='like-button' alt="like button" />
+                                <img src={require(`./../assets/${comment.liked_by.includes(username) ? 'heart_full' : 'heart_empty'}.png`)} id={comment.commentID} onClick={likeOrDislikeComment} className='like-button' alt="like button" />
                                 <p className="comment-likes">{comment.likes}</p>
                             </div>
                         </div>
