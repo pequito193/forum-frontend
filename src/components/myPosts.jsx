@@ -3,6 +3,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
+import moment from "moment";
 
 function MyPosts(props) {
 
@@ -11,18 +12,6 @@ function MyPosts(props) {
     const [ posts, setPosts ] = useState([]);
 
     const { user } = useParams();
-
-    let dateFormat = {
-        day: 'numeric',
-        month: 'numeric',
-        year: 'numeric'
-    }
-
-    let hourFormat = {
-        hour: 'numeric',
-        hour12: false,
-        minute: 'numeric'
-    }
 
     useEffect(() => {
         axios.get(`/posts/users/${user}`, {
@@ -47,7 +36,7 @@ function MyPosts(props) {
                             </div>
                             <Link to={`/posts/${post.id}`} className="post-info-wrapper">
                                 <p className="post-title">{post.title}</p>
-                                <p className="post-date">{post.username}, {new Date(post.date).toLocaleTimeString('en-US', hourFormat)}, {new Date(post.date).toLocaleDateString('en-US', dateFormat)}</p>
+                                <p className="post-date">{post.username}, {moment(new Date(post.date)).fromNow()}</p>
                             </Link>
                         </div>
                     )

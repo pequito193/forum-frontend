@@ -103,35 +103,34 @@ function App() {
     function likeOrDislikeComment(e) {
         const image = e.target.src;
         const id = e.target.id;
-        console.log(id)
-        // if (image.match(/\/media\/(.*?)\./)[1] === 'heart_empty') {
-        //     axios.post(`/comments/likes/${id}`, {
-        //         info: 'Like'
-        //     }, {
-        //         headers: {
-        //             Authorization: `Bearer ${JWT}`
-        //         }
-        //     })
-        //     .then(response => {
-        //         if (response.data.message === 'Success') {
-        //             window.location.reload();
-        //         }
-        //     })
-        // }
-        // else if (image.match(/\/media\/(.*?)\./)[1] === 'heart_full') {
-        //     axios.post(`/comments/likes/${id}`, {
-        //         info: 'Dislike'
-        //     }, {
-        //         headers: {
-        //             Authorization: `Bearer ${JWT}`
-        //         }
-        //     })
-        //     .then(response => {
-        //         if (response.data.message === 'Success') {
-        //             window.location.reload();
-        //         }
-        //     })
-        // }
+        if (image.match(/\/media\/(.*?)\./)[1] === 'heart_empty') {
+            axios.post(`/comments/likes/${id}`, {
+                info: 'Like'
+            }, {
+                headers: {
+                    Authorization: `Bearer ${JWT}`
+                }
+            })
+            .then(response => {
+                if (response.data.message === 'Success') {
+                    window.location.reload();
+                }
+            })
+        }
+        else if (image.match(/\/media\/(.*?)\./)[1] === 'heart_full') {
+            axios.post(`/comments/likes/${id}`, {
+                info: 'Dislike'
+            }, {
+                headers: {
+                    Authorization: `Bearer ${JWT}`
+                }
+            })
+            .then(response => {
+                if (response.data.message === 'Success') {
+                    window.location.reload();
+                }
+            })
+        }
     }
 
     // Sets user status

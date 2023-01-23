@@ -3,24 +3,13 @@ import React from "react";
 import { useEffect, useState } from "react";
 import './../styles/postList.css';
 import { Link } from "react-router-dom";
+import moment from "moment";
 
 function PostList(props) {
 
     const { username, isLoggedIn, likeOrDislikePost } = props;
 
     const [ posts, setPosts ] = useState([])
-
-    let dateFormat = {
-        day: 'numeric',
-        month: 'numeric',
-        year: 'numeric'
-    }
-
-    let hourFormat = {
-        hour: 'numeric',
-        hour12: false,
-        minute: 'numeric'
-    }
 
     useEffect(() => {
         axios.get('/posts/')
@@ -47,7 +36,7 @@ function PostList(props) {
                             </div>
                             <Link to={`/posts/${post.id}`} className="post-info-wrapper">
                                 <p className="post-title">{post.title}</p>
-                                <p className="post-date">{post.username}, {new Date(post.date).toLocaleTimeString('en-US', hourFormat)}, {new Date(post.date).toLocaleDateString('en-US', dateFormat)}</p>
+                                <p className="post-date">{post.username}, {moment(new Date(post.date)).fromNow()}</p>
                             </Link>
                         </div>
                     )

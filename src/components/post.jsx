@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import './../styles/post.css'
 import { Link } from "react-router-dom";
+import moment from 'moment';
 
 function Post(props) {
 
@@ -13,18 +14,6 @@ function Post(props) {
     const [ comments, setComments ] = useState([]);
 
     const { id } = useParams();
-
-    let dateFormat = {
-        day: 'numeric',
-        month: 'numeric',
-        year: 'numeric'
-    }
-
-    let hourFormat = {
-        hour: 'numeric',
-        hour12: false,
-        minute: 'numeric'
-    }
 
     useEffect(() => {
         axios.get(`/posts/${id}`)
@@ -69,7 +58,7 @@ function Post(props) {
                                 }
                                 <p className="post-complete-likes">{post.likes}</p>
                             </div>
-                            <p className="post-date">{post.username}, {new Date(post.date).toLocaleTimeString('en-US', hourFormat)}, {new Date(post.date).toLocaleDateString('en-US', dateFormat)}</p>
+                            <p className="post-complete-date">{post.username}, {moment(new Date(post.date)).fromNow()}</p>
                         </div>
                     </div>
                 )
@@ -81,17 +70,17 @@ function Post(props) {
                 <button type="submit" className="submit new-comment-button">Create</button>
             </form>
             :
-            <form onSubmit={newComment} method='post' className="new-comment-form">
+            <div className="new-comment-form">
                 <p className="new-comment-form-description"><Link to={'/users/login'} className='login-link'>Login</Link> to leave a comment!</p>
-            </form>
+            </div>
             }
             <div className="comment-wrapper">
                 {comments.map((comment, i) => {
                     return(
                         <div className='comment' key={comment.commentID}>
-                            <p className="comment-user">{comment.username}, {new Date(comment.date).toLocaleDateString('en-US', dateFormat)}</p>
+                            <p className="comment-user">{comment.username}, {moment(new Date(comment.date)).fromNow()}</p>
                             <p className="comment-content">{comment.content}</p>
-                            <div className="comment-info-wrapper">
+                            <div className="comment-likes-wrapper">
                                 <img src={require(`./../assets/${comment.liked_by.includes(username) ? 'heart_full' : 'heart_empty'}.png`)} id={comment.commentID} onClick={likeOrDislikeComment} className='like-button' alt="like button" />
                                 <p className="comment-likes">{comment.likes}</p>
                             </div>
