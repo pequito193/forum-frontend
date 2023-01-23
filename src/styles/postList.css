@@ -27,7 +27,7 @@
 }
 
 .post-title {
-    color: rgb(225, 225, 225);
+    color: rgb(233, 233, 233);
     font-size: 24px;
 }
 
@@ -47,9 +47,9 @@
 }
 
 .post-date {
-    color: rgb(225, 225, 225);
+    color: rgb(182, 182, 182);
 }
 
 .post-likes {
-    color: rgb(225, 225, 225);
+    color: rgb(233, 233, 233);
 }
