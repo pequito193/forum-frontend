@@ -19,7 +19,7 @@ function NewPost(props) {
             }, {
                 headers: {
                     Authorization: `Bearer ${JWT}`
-                },
+                }
             })
             .then(response => {
                 if (response.data.message === 'Success') {

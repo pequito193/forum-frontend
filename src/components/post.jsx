@@ -6,7 +6,7 @@ import './../styles/post.css'
 
 function Post(props) {
 
-    const { username, likeOrDislike } = props;
+    const { username, likeOrDislike, JWT } = props;
 
     const [ post, setPost ] = useState([]);
     const [ comments, setComments ] = useState([]);
@@ -33,6 +33,23 @@ function Post(props) {
         })
     }, [])
 
+    function newComment(e) {
+        e.preventDefault();
+        axios.post('/posts/comments/new', {
+            postID: id,
+            content: e.target[0].value
+        }, {
+            headers: {
+                Authorization: `Bearer ${JWT}`
+            }
+        })
+        .then(response => {
+            if (response.data.message === 'Success') {
+                window.location.reload();
+            }
+        })
+    }
+
     return (
         <React.Fragment>
             {post.map((post, i) => {
@@ -50,6 +67,11 @@ function Post(props) {
                     </div>
                 )
             })}
+            <form onSubmit={newComment} method='post' className="new-comment-form">
+                <p className="new-comment-form-description">Add a Comment</p>
+                <textarea name="new-comment-input" className="new-comment-input" id="" cols="30" rows="4" required={true} placeholder="Write your comment here"></textarea>
+                <button type="submit" className="submit new-comment-button">Create</button>
+            </form>
             <div className="comment-wrapper">
                 {comments.map((comment, i) => {
                     return(
