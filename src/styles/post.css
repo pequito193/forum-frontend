@@ -4,7 +4,7 @@
     gap: 24px;
     background-color: rgb(50, 50, 50);
     box-shadow: 0 0 6px inset rgb(35, 35, 35);
-    padding: 28px 32px 18px;
+    padding: 28px 50px 18px;
 }
 
 .post-complete-title {
@@ -34,4 +34,37 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.new-comment-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: rgb(50, 50, 50);
+    box-shadow: 0 0 6px inset rgb(35, 35, 35);
+    justify-content: center;
+    padding: 32px 50px;
+    margin: 20px 0;
+}
+
+.new-comment-form-description {
+    color: rgb(222, 222, 222);
+}
+
+.new-comment-input {
+    resize: none;
+    background-color: rgb(45, 45, 45);
+    border: 1px solid rgb(94, 94, 94);
+    border-radius: 2px;
+    color: rgb(222, 222, 222);
+    padding: 10px;
+    font-size: 16px;
+}
+
+.new-comment-input:focus {
+    outline: none;
+}
+
+.new-comment-button {
+    width: 100px;
 }

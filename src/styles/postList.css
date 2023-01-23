@@ -14,8 +14,8 @@
 }
 
 .like-button {
-    height: 40px;
-    width: 40px;
+    height: 38px;
+    width: 38px;
     filter: invert(100%);
     cursor: pointer;
 }
