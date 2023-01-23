@@ -3,10 +3,11 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import './../styles/post.css'
+import { Link } from "react-router-dom";
 
 function Post(props) {
 
-    const { username, likeOrDislike, JWT } = props;
+    const { username, likeOrDislikePost, likeOrDislikeComment, JWT, isLoggedIn } = props;
 
     const [ post, setPost ] = useState([]);
     const [ comments, setComments ] = useState([]);
@@ -59,7 +60,13 @@ function Post(props) {
                         <p className="post-complete-content">{post.content}</p>
                         <div className="post-complete-info-wrapper">
                             <div className="post-complete-likes-wrapper">
-                                <img src={require(`./../assets/${post.liked_by.includes(username) ? 'heart_full' : 'heart_empty'}.png`)} id={post.id} onClick={likeOrDislike} className='like-button' alt="like button" />
+                            {isLoggedIn ? 
+                                <img src={require(`./../assets/${post.liked_by.includes(username) ? 'heart_full' : 'heart_empty'}.png`)} id={post.id} onClick={likeOrDislikePost} className='like-button' alt="like button" />
+                                : 
+                                <Link to={'/users/login'}>
+                                    <img src={require('./../assets/heart_empty.png')} id={post.id} onClick={likeOrDislikePost} className='like-button' alt="like button" />
+                                </Link>
+                                }
                                 <p className="post-complete-likes">{post.likes}</p>
                             </div>
                             <p className="post-date">{post.username}, {new Date(post.date).toLocaleTimeString('en-US', hourFormat)}, {new Date(post.date).toLocaleDateString('en-US', dateFormat)}</p>
@@ -76,11 +83,11 @@ function Post(props) {
                 {comments.map((comment, i) => {
                     return(
                         <div  className='comment' key={comment.postID}>
-                            <p className="comment-user">{comment.username}</p>
+                            <p className="comment-user">{comment.username}, {new Date(comment.date).toLocaleDateString('en-US', dateFormat)}</p>
                             <p className="comment-content">{comment.content}</p>
                             <div className="comment-info-wrapper">
+                                <img src={require(`./../assets/${comment.liked_by.includes(username) ? 'heart_full' : 'heart_empty'}.png`)} id={comment.postID} onClick={likeOrDislikeComment} className='like-button' alt="like button" />
                                 <p className="comment-likes">{comment.likes}</p>
-                                <p className="comment-date">{new Date(comment.date).toLocaleDateString('en-US', dateFormat)}</p>
                             </div>
                         </div>
                     )

@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 function PostList(props) {
 
-    const { username, isLoggedIn, likeOrDislike } = props;
+    const { username, isLoggedIn, likeOrDislikePost } = props;
 
     const [ posts, setPosts ] = useState([])
 
@@ -37,10 +37,10 @@ function PostList(props) {
                         <div className='post' key={post.id}>
                             <div className="post-likes-wrapper">
                                 {isLoggedIn ? 
-                                <img src={require(`./../assets/${post.liked_by.includes(username) ? 'heart_full' : 'heart_empty'}.png`)} id={post.id} onClick={likeOrDislike} className='like-button' alt="like button" />
+                                <img src={require(`./../assets/${post.liked_by.includes(username) ? 'heart_full' : 'heart_empty'}.png`)} id={post.id} onClick={likeOrDislikePost} className='like-button' alt="like button" />
                                 : 
                                 <Link to={'/users/login'}>
-                                    <img src={require(`./../assets/${post.liked_by.includes(username) ? 'heart_full' : 'heart_empty'}.png`)} id={post.id} onClick={likeOrDislike} className='like-button' alt="like button" />
+                                    <img src={require('./../assets/heart_empty.png')} id={post.id} onClick={likeOrDislikePost} className='like-button' alt="like button" />
                                 </Link>
                                 }
                                 <p className="post-likes">{post.likes}</p>

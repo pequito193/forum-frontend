@@ -22,9 +22,9 @@ function Main(props) {
                         <Route exact path="/users/login" element={<Login isLoggedIn={isLoggedIn} errorMessage={errorMessage} login={login} />} />
                         <Route exact path="/users/logout" element={<Logout logout={logout} />} />
                         <Route exact path="/users/signup" element={<SignUp signup={signup} errorMessage={errorMessage} />} />
-                        <Route exact path="/users/posts/:user" element={<MyPosts likeOrDislike={likeOrDislike} JWT={JWT} username={username} />} />
+                        <Route exact path="/users/posts/:user" element={<MyPosts likeOrDislike={likeOrDislike} JWT={JWT} username={username} isLoggedIn={isLoggedIn} />} />
                         <Route exact path="/posts/new" element={<NewPost JWT={JWT} />} />
-                        <Route exact path="/posts/:id" element={<Post username={username} likeOrDislike={likeOrDislike} JWT={JWT} />} />
+                        <Route exact path="/posts/:id" element={<Post username={username} likeOrDislike={likeOrDislike} JWT={JWT} isLoggedIn={isLoggedIn} />} />
                     </Routes>
                 </div>
             </div>                
