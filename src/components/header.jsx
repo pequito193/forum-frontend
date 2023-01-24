@@ -5,14 +5,14 @@ import SubHeader from "./subHeader";
 
 function Header(props) {
 
-    const { username, isLoggedIn } = props;
+    const { username, isLoggedIn, searchPost } = props;
 
     return (
         <React.Fragment>
             <div className="header">
                 <div className="left-header">
                     <Link to={'/'}><img className="logo" src={require('./../assets/logo.png')} alt="logo" /></Link>
-                    <form className="search">
+                    <form className="search" onSubmit={searchPost}>
                         <button className="submit-search" type="submit"><img className="search-logo" src={require('./../assets/search.png')} alt="search button" /></button>
                         <input type="text" className="search-input" required={true} placeholder="Search..."/>
                     </form>

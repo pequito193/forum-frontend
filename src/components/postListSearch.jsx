@@ -1,34 +1,34 @@
-import React from "react";
 import axios from "axios";
+import React from "react";
 import { useEffect, useState } from "react";
+import './../styles/postList.css';
 import { Link } from "react-router-dom";
 import moment from "moment";
 
-function MyPosts(props) {
+function PostListSearch(props) {
 
-    const { JWT, username, likeOrDislikePost } = props;
+    const { username, isLoggedIn, likeOrDislikePost, search } = props;
 
-    const [ posts, setPosts ] = useState([]);
+    const [ posts, setPosts ] = useState([])
 
     useEffect(() => {
-        axios.get('/posts/users/', {
-            headers: {
-                Authorization: `Bearer ${JWT}`
-            }
-        })
-        .then(response => {
-            setPosts(response.data.posts);
-        })
-    }, [])
-
-    return(
+        setPosts(search);
+    }, []);
+   
+    return (
         <React.Fragment>
             <div className="post-wrapper">
-                {posts.map((post, id) => {
+                {posts.map((post, i) => {
                     return(
-                        <div className="post" key={post.id}>
-                             <div className="post-likes-wrapper">
+                        <div className='post' key={post.id}>
+                            <div className="post-likes-wrapper">
+                                {isLoggedIn ? 
                                 <img src={require(`./../assets/${post.liked_by.includes(username) ? 'heart_full' : 'heart_empty'}.png`)} id={post.id} onClick={likeOrDislikePost} className='like-button' alt="like button" />
+                                : 
+                                <Link to={'/users/login'}>
+                                    <img src={require('./../assets/heart_empty.png')} id={post.id} onClick={likeOrDislikePost} className='like-button' alt="like button" />
+                                </Link>
+                                }
                                 <p className="post-likes">{post.likes}</p>
                             </div>
                             <Link to={`/posts/${post.id}`} className="post-info-wrapper">
@@ -40,7 +40,7 @@ function MyPosts(props) {
                 })}
             </div>
         </React.Fragment>
-    )
+    );
 }
 
-export default MyPosts;
+export default PostListSearch;

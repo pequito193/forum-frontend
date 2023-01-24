@@ -8,10 +8,11 @@ import PostList from "./postList";
 import SignUp from "./signUp";
 import Post from "./post";
 import MyPosts from "./myPosts";
+import PostListSearch from "./postListSearch";
 
 function Main(props) {
 
-    const { likeOrDislikePost, likeOrDislikeComment, username, errorMessage, isLoggedIn, logout, login, signup, JWT } = props;
+    const { likeOrDislikePost, likeOrDislikeComment, username, errorMessage, isLoggedIn, logout, login, signup, JWT, search } = props;
 
     return(
         <React.Fragment>
@@ -25,6 +26,7 @@ function Main(props) {
                         <Route exact path="/users/posts/:user" element={<MyPosts likeOrDislikePost={likeOrDislikePost} JWT={JWT} username={username} isLoggedIn={isLoggedIn} />} />
                         <Route exact path="/posts/new" element={<NewPost JWT={JWT} />} />
                         <Route exact path="/posts/:id" element={<Post username={username} likeOrDislikePost={likeOrDislikePost} likeOrDislikeComment={likeOrDislikeComment} JWT={JWT} isLoggedIn={isLoggedIn} />} />
+                        <Route exact path="/search/" element={<PostListSearch username={username} search={search} likeOrDislikePost={likeOrDislikePost} isLoggedIn={isLoggedIn} />} />
                     </Routes>
                 </div>
             </div>                
