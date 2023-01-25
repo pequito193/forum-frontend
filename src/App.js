@@ -13,6 +13,7 @@ function App() {
     const [ JWT, setJWT ] = useState(localStorage.getItem('JWT') ? localStorage.getItem('JWT') : null);
     const [ isLoggedIn, setIsLoggedIn ] = useState(false);
     const [ username, setUsername ] = useState('');
+    const [ search, setSearch ] = useState([]);
 
     const navigate = useNavigate();
 
@@ -63,6 +64,20 @@ function App() {
         setJWT(undefined);
         localStorage.removeItem('JWT');
         navigate('/');
+    }
+
+    // Function to search for a post
+    function searchPost(e) {
+        e.preventDefault();
+        const searchParams = e.target[1].value;
+        axios.get(`/posts/search/${searchParams}`)
+        .then(response => {
+            if (response.data.message === 'Success') {
+                e.target[1].value = '';
+                setSearch(response.data.postsFound);
+                navigate('/search');
+            }
+        })
     }
 
     // Function that handles liking and disliking posts
@@ -157,8 +172,8 @@ function App() {
 
   return (
     <React.Fragment>
-      <Header username={username} isLoggedIn={isLoggedIn} />
-      <Main likeOrDislikePost={likeOrDislikePost} likeOrDislikeComment={likeOrDislikeComment} username={username} errorMessage={errorMessage} isLoggedIn={isLoggedIn} JWT={JWT} login={login} signup={signup} logout={logout} />
+      <Header username={username} isLoggedIn={isLoggedIn} searchPost={searchPost} />
+      <Main likeOrDislikePost={likeOrDislikePost} likeOrDislikeComment={likeOrDislikeComment} username={username} errorMessage={errorMessage} isLoggedIn={isLoggedIn} JWT={JWT} login={login} signup={signup} logout={logout} search={search} />
     </React.Fragment>
   );
 }

@@ -10,6 +10,16 @@ function MyPosts(props) {
 
     const [ posts, setPosts ] = useState([]);
 
+    function deletePost(e) {
+        axios.delete('/delete', {
+            id: e.target[1]
+        }, {
+            headers: {
+                Authorization: `Bearer ${JWT}`
+            }
+        })
+    }
+
     useEffect(() => {
         axios.get('/posts/users/', {
             headers: {
