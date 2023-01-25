@@ -5,6 +5,7 @@ import { useParams } from "react-router";
 import './../styles/post.css'
 import { Link } from "react-router-dom";
 import moment from 'moment';
+import { useNavigate } from "react-router";
 
 function Post(props) {
 
@@ -15,6 +16,7 @@ function Post(props) {
     const [ deleteClass, setDeleteClass ] = useState('delete-button-hidden');
 
     const { id } = useParams();
+    const navigate = useNavigate();
 
     useEffect(() => {
         axios.get(`/posts/${id}`)
@@ -33,16 +35,14 @@ function Post(props) {
     }
 
     function deletePost(e) {
-        axios.delete('/posts/delete', {
-            id: id
-        }, {
+        axios.delete(`/posts/delete/${id}`, {
             headers: {
                 Authorization: `Bearer ${JWT}`
             }
         })
         .then(response => {
             if (response.data.message === 'Success') {
-                window.location.reload();
+                navigate('/');
             }
         })
     }
