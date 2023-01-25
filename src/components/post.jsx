@@ -12,6 +12,7 @@ function Post(props) {
 
     const [ post, setPost ] = useState([]);
     const [ comments, setComments ] = useState([]);
+    const [ deleteClass, setDeleteClass ] = useState('delete-button-hidden');
 
     const { id } = useParams();
 
@@ -22,6 +23,29 @@ function Post(props) {
             setComments(response.data.comments);
         })
     }, [])
+
+    function showDeleteOption() {
+        setDeleteClass('delete-button-visible');
+    }
+
+    function hideDeleteOption() {
+        setDeleteClass('delete-button-hidden');
+    }
+
+    function deletePost(e) {
+        axios.delete('/posts/delete', {
+            id: id
+        }, {
+            headers: {
+                Authorization: `Bearer ${JWT}`
+            }
+        })
+        .then(response => {
+            if (response.data.message === 'Success') {
+                window.location.reload();
+            }
+        })
+    }
 
     function newComment(e) {
         e.preventDefault();
@@ -45,7 +69,17 @@ function Post(props) {
             {post.map((post, i) => {
                 return(
                     <div className="post-complete" key={post.id}>
-                        <p className="post-complete-title">{post.title}</p>
+                        <div className="post-complete-header">
+                            <div className="post-complete-title">{post.title}</div>
+                            {(username === post.username) ? 
+                                <div className="post-options-wrapper">
+                                    <Link className="post-options">Edit</Link>
+                                    <p onClick={showDeleteOption} className="post-options">Delete</p>
+                                </div>
+                                :
+                                <div className="nothing"></div>
+                            }
+                        </div>
                         <p className="post-complete-content">{post.content}</p>
                         <div className="post-complete-info-wrapper">
                             <div className="post-complete-likes-wrapper">
@@ -63,6 +97,11 @@ function Post(props) {
                     </div>
                 )
             })}
+            <div className={`${deleteClass}`}>
+                <p className="delete-post-message">Are you sure you want to <span className='delete-word'>delete</span> this post?</p>
+                <button onClick={deletePost} className="delete-post-button">Delete</button>
+                <button onClick={hideDeleteOption} className="delete-post-button">Cancel</button>
+            </div>
             {isLoggedIn ?
             <form onSubmit={newComment} method='post' className="new-comment-form">
                 <p className="new-comment-form-description">Add a Comment</p>
