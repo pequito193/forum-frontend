@@ -85,7 +85,8 @@ function App() {
         const image = e.target.src;
         const id = e.target.id;
         if (image.match(/\/media\/(.*?)\./)[1] === 'heart_empty') {
-            axios.post(`/posts/likes/${id}`, {
+            axios.post('/posts/likes/', {
+                id: id,
                 info: 'Like'
             }, {
                 headers: {
@@ -99,7 +100,8 @@ function App() {
             })
         }
         else if (image.match(/\/media\/(.*?)\./)[1] === 'heart_full') {
-            axios.post(`/posts/likes/${id}`, {
+            axios.post('/posts/likes/', {
+                id: id,
                 info: 'Dislike'
             }, {
                 headers: {
@@ -119,7 +121,8 @@ function App() {
         const image = e.target.src;
         const id = e.target.id;
         if (image.match(/\/media\/(.*?)\./)[1] === 'heart_empty') {
-            axios.post(`/comments/likes/${id}`, {
+            axios.post('/comments/likes/', {
+                id: id,
                 info: 'Like'
             }, {
                 headers: {
@@ -133,7 +136,8 @@ function App() {
             })
         }
         else if (image.match(/\/media\/(.*?)\./)[1] === 'heart_full') {
-            axios.post(`/comments/likes/${id}`, {
+            axios.post('/comments/likes/', {
+                id: id,
                 info: 'Dislike'
             }, {
                 headers: {
