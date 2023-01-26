@@ -162,3 +162,13 @@
     cursor: pointer;
     background-color: rgb(165, 48, 19);
 }
+
+.comment-bottom-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nothing {
+    display: none;
+}
