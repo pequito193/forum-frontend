@@ -11,10 +11,10 @@ function EditPost(props) {
     const [ post, setPost ] = useState([]);
 
     const navigate = useNavigate();
-    const { postID } = useParams();
+    const { id } = useParams();
 
     useEffect(() => {
-        axios.get(`/posts/${postID}`)
+        axios.get(`/posts/${id}`)
         .then(response => {
             setPost(response.data.post);
         })
@@ -26,7 +26,7 @@ function EditPost(props) {
         const newTitle = e.target[0].value;
         const newContent = e.target[1].value;
         axios.post('/posts/edit', {
-            id: postID,
+            id: id,
             title: newTitle,
             content: newContent
         }, {
@@ -36,14 +36,14 @@ function EditPost(props) {
         })
         .then(response => {
             if (response.data.message === 'Success') {
-                navigate(`/posts/${postID}`);
+                navigate(`/posts/${id}`);
             }
         })
     }
 
     return(
         <React.Fragment>
-            {post.map((post, id) => {
+            {post.map((post, i) => {
                 return(
                     <div key={post.id}>
                         <h1 className="new-post-title">Edit Post</h1>
@@ -52,7 +52,7 @@ function EditPost(props) {
                             <textarea name='post' className="input" type='text' rows={16} defaultValue={post.content} required={true}/>
                             <div className="wrapper">
                                 <button className="submit" type="submit">Edit</button>
-                                <button className="submit" type='button'><Link className="no-underline" to={`/posts/${postID}`}>Cancel</Link></button>
+                                <button className="submit" type='button'><Link className="no-underline" to={`/posts/${id}`}>Cancel</Link></button>
                             </div>
                         </form>
                     </div>

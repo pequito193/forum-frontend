@@ -122,9 +122,19 @@ function Post(props) {
                         <div className='comment' key={comment.commentID}>
                             <p className="comment-user">{comment.username}, {moment(new Date(comment.date)).fromNow()}</p>
                             <p className="comment-content">{comment.content}</p>
-                            <div className="comment-likes-wrapper">
-                                <img src={require(`./../assets/${comment.liked_by.includes(username) ? 'heart_full' : 'heart_empty'}.png`)} id={comment.commentID} onClick={likeOrDislikeComment} className='like-button' alt="like button" />
-                                <p className="comment-likes">{comment.likes}</p>
+                            <div className="comment-bottom-wrapper">
+                                <div className="comment-likes-wrapper">
+                                    <img src={require(`./../assets/${comment.liked_by.includes(username) ? 'heart_full' : 'heart_empty'}.png`)} id={comment.commentID} onClick={likeOrDislikeComment} className='like-button' alt="like button" />
+                                    <p className="comment-likes">{comment.likes}</p>
+                                </div>
+                                {(username === comment.username) ?
+                                    <div className="post-options-wrapper">
+                                        <Link to={`/comments/edit/${comment.commentID}`} className="post-options">Edit</Link>
+                                        {/* <p onClick={showDeleteOption} className="post-options">Delete</p> */}
+                                    </div>
+                                    :
+                                    <div className="nothing"></div>
+                                }
                             </div>
                         </div>
                     )

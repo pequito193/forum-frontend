@@ -17,12 +17,11 @@ function App() {
 
     const navigate = useNavigate();
 
-
     // Login function, fetches a login JSON web token from the server and stores it
     function login(e) {
         e.preventDefault();
         try {
-            axios.post('/users/login', {
+            axios.post('/user/login', {
                 username: e.target[0].value,
                 password: e.target[1].value
             })
@@ -40,7 +39,7 @@ function App() {
     function signup(e) {
         e.preventDefault();
         try {
-            axios.post('/users/signup', {
+            axios.post('/user/signup', {
                 username: e.target[0].value,
                 username_lowercase: e.target[0].value.toLowerCase(),
                 email: e.target[1].value,
@@ -50,7 +49,7 @@ function App() {
             .then(response => {
                 setErrorMessage(response.data.message);
                 if (response.data.result === 'Success') {
-                    navigate('/users/login');
+                    navigate('/user/login');
                 }
             })
         }
@@ -75,7 +74,7 @@ function App() {
             if (response.data.message === 'Success') {
                 e.target[1].value = '';
                 setSearch(response.data.postsFound);
-                navigate('/search');
+                navigate('/posts/search');
             }
         })
     }

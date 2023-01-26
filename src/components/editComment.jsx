@@ -25,7 +25,7 @@ function EditComment(props) {
     // Handles the request for editing a post
     function editComment(e) {
         e.preventDefault();
-        const newComment = e.target[1].value;
+        const newComment = e.target[0].value;
         axios.post('/comments/edit', {
             commentID: id,
             content: newComment
@@ -43,7 +43,7 @@ function EditComment(props) {
 
     return(
         <React.Fragment>
-            {comment.map((comment, id) => {
+            {comment.map((comment, i) => {
                 return(
                     <div key={comment.commentID}>
                         <h1 className="new-post-title">Edit Comment</h1>
