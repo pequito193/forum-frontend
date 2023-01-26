@@ -5,7 +5,7 @@ import './../styles/subHeader.css'
 
 function SubHeader(props) {
 
-    const { isLoggedIn, username } = props;
+    const { isLoggedIn } = props;
 
     const [ headerMessage, setHeaderMessage ] = useState('');
     const [ headerLink, setHeaderLink ] = useState('');

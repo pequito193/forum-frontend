@@ -22,7 +22,7 @@ function Header(props) {
                     <p className="links"><img className="settings" src={require('./../assets/settings.png')} alt="settings" /></p>
                 </div>
             </div>
-            <SubHeader username={username} isLoggedIn={isLoggedIn} />
+            <SubHeader isLoggedIn={isLoggedIn} />
         </React.Fragment>
     );
 }

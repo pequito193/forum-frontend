@@ -4,31 +4,31 @@ import { useParams, useNavigate } from "react-router";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-function EditPost(props) {
+function EditComment(props) {
 
     const { JWT } = props;
 
-    const [ post, setPost ] = useState([]);
+    const [ comment, setComment ] = useState([]);
+    const [ postID, setPostID ] = useState('');
 
     const navigate = useNavigate();
-    const { postID } = useParams();
+    const { id } = useParams();
 
     useEffect(() => {
-        axios.get(`/posts/${postID}`)
+        axios.get(`/comments/${id}`)
         .then(response => {
-            setPost(response.data.post);
+            setComment(response.data.comment);
+            setPostID(response.data.postID);
         })
     }, [])
 
     // Handles the request for editing a post
-    function editPost(e) {
+    function editComment(e) {
         e.preventDefault();
-        const newTitle = e.target[0].value;
-        const newContent = e.target[1].value;
-        axios.post('/posts/edit', {
-            id: postID,
-            title: newTitle,
-            content: newContent
+        const newComment = e.target[1].value;
+        axios.post('/comments/edit', {
+            commentID: id,
+            content: newComment
         }, {
             headers: {
                 Authorization: `Bearer ${JWT}`
@@ -43,13 +43,12 @@ function EditPost(props) {
 
     return(
         <React.Fragment>
-            {post.map((post, id) => {
+            {comment.map((comment, id) => {
                 return(
-                    <div key={post.id}>
-                        <h1 className="new-post-title">Edit Post</h1>
-                        <form className="new-post" method="post" onSubmit={editPost}>
-                            <input name='title' className="input" type="text" maxLength={50} defaultValue={post.title} required={true} />
-                            <textarea name='post' className="input" type='text' rows={16} defaultValue={post.content} required={true}/>
+                    <div key={comment.commentID}>
+                        <h1 className="new-post-title">Edit Comment</h1>
+                        <form className="new-post" method="post" onSubmit={editComment}>
+                            <textarea name="new-comment-input" className="new-comment-input" id="" cols="30" rows="4" required={true} defaultValue={comment.content}></textarea>
                             <div className="wrapper">
                                 <button className="submit" type="submit">Edit</button>
                                 <button className="submit" type='button'><Link className="no-underline" to={`/posts/${postID}`}>Cancel</Link></button>
@@ -62,4 +61,4 @@ function EditPost(props) {
     )
 }
 
-export default EditPost;
+export default EditComment;
