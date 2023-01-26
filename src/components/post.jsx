@@ -26,14 +26,18 @@ function Post(props) {
         })
     }, [])
 
+
+    // Shows delete post option
     function showDeleteOption() {
         setDeleteClass('delete-button-visible');
     }
 
+    // Hides delete post option
     function hideDeleteOption() {
         setDeleteClass('delete-button-hidden');
     }
 
+    // Sends delete request to the server
     function deletePost(e) {
         axios.delete(`/posts/delete/${id}`, {
             headers: {
@@ -47,6 +51,7 @@ function Post(props) {
         })
     }
 
+    // Handles the creation of a new comment
     function newComment(e) {
         e.preventDefault();
         axios.post('/comments/new', {

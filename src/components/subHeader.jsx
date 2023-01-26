@@ -13,10 +13,10 @@ function SubHeader(props) {
     useEffect(() => {
         if(isLoggedIn) {
             setHeaderMessage('Log Out');
-            setHeaderLink('/users/logout');
+            setHeaderLink('/user/logout');
         } else {
             setHeaderMessage('Log In');
-            setHeaderLink('/users/login');
+            setHeaderLink('/user/login');
         }
     }, [isLoggedIn])
 
@@ -24,8 +24,8 @@ function SubHeader(props) {
     return (
         <React.Fragment>
             <div className="subHeader">
-                <Link to={isLoggedIn ? '/posts/new' : '/users/login'} className='subHeader-link'>New Post</Link>
-                <Link to={isLoggedIn ? `/users/posts/${username}` : '/users/login'} className='subHeader-link'>My Posts</Link>
+                <Link to={isLoggedIn ? '/posts/new' : '/user/login'} className='subHeader-link'>New Post</Link>
+                <Link to={isLoggedIn ? '/user/posts' : '/user/login'} className='subHeader-link'>My Posts</Link>
                 <Link to={headerLink} className='subHeader-link'>{headerMessage}</Link>
             </div>
         </React.Fragment>
