@@ -1,11 +1,10 @@
 import React from "react";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router";
+import { useParams, useNavigate } from "react-router";
 import './../styles/post.css'
 import { Link } from "react-router-dom";
 import moment from 'moment';
-import { useNavigate } from "react-router";
 
 function Post(props) {
 
@@ -25,7 +24,6 @@ function Post(props) {
             setComments(response.data.comments);
         })
     }, [])
-
 
     // Shows delete post option
     function showDeleteOption() {
@@ -78,7 +76,7 @@ function Post(props) {
                             <div className="post-complete-title">{post.title}</div>
                             {(username === post.username) ? 
                                 <div className="post-options-wrapper">
-                                    <Link className="post-options">Edit</Link>
+                                    <Link to={`/posts/edit/${id}`} className="post-options">Edit</Link>
                                     <p onClick={showDeleteOption} className="post-options">Delete</p>
                                 </div>
                                 :
