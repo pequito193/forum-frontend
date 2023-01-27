@@ -12,7 +12,8 @@ function Post(props) {
 
     const [ post, setPost ] = useState([]);
     const [ comments, setComments ] = useState([]);
-    const [ deleteClass, setDeleteClass ] = useState('delete-button-hidden');
+    const [ deletePostClass, setDeletePostClass ] = useState('delete-post-hidden');
+    const [ deleteCommentClass, setDeleteCommentClass ] = useState('delete-comment-hidden');
 
     const { id } = useParams();
     const navigate = useNavigate();
@@ -26,18 +27,30 @@ function Post(props) {
     }, [])
 
     // Shows delete post option
-    function showDeleteOption() {
-        setDeleteClass('delete-button-visible');
+    function showDeletePostOption() {
+        setDeletePostClass('delete-post-visible');
     }
 
     // Hides delete post option
-    function hideDeleteOption() {
-        setDeleteClass('delete-button-hidden');
+    function hideDeletePostOption() {
+        setDeletePostClass('delete-post-hidden');
+    }
+
+    // Shows delete comment option
+    function showDeleteCommentOption() {
+        setDeleteCommentClass('delete-comment-visible');
+    }
+
+    // Hides delete comment option
+    function hideDeleteCommentOption() {
+        setDeleteCommentClass('delete-comment-hidden')
     }
 
     // Sends delete request to the server
     function deletePost(e) {
-        axios.delete(`/posts/delete/${id}`, {
+        axios.post('/posts/delete', {
+            id: id
+        }, {
             headers: {
                 Authorization: `Bearer ${JWT}`
             }
@@ -45,6 +58,22 @@ function Post(props) {
         .then(response => {
             if (response.data.message === 'Success') {
                 navigate('/');
+            }
+        })
+    }
+    
+    // Sends delete request to the server
+    function deleteComment(e) {
+        axios.post('/comments/delete', {
+            commentID: e.target.id
+        }, {
+            headers: {
+                Authorization: `Bearer ${JWT}`
+            }
+        })
+        .then(response => {
+            if (response.data.message === 'Success') {
+                window.location.reload();;
             }
         })
     }
@@ -77,7 +106,7 @@ function Post(props) {
                             {(username === post.username) ? 
                                 <div className="post-options-wrapper">
                                     <Link to={`/posts/edit/${id}`} className="post-options">Edit</Link>
-                                    <p onClick={showDeleteOption} className="post-options">Delete</p>
+                                    <p onClick={showDeletePostOption} className="post-options">Delete</p>
                                 </div>
                                 :
                                 <div className="nothing"></div>
@@ -100,10 +129,10 @@ function Post(props) {
                     </div>
                 )
             })}
-            <div className={`${deleteClass}`}>
+            <div className={`${deletePostClass}`}>
                 <p className="delete-post-message">Are you sure you want to <span className='delete-word'>delete</span> this post?</p>
                 <button onClick={deletePost} className="delete-post-button">Delete</button>
-                <button onClick={hideDeleteOption} className="delete-post-button">Cancel</button>
+                <button onClick={hideDeletePostOption} className="delete-post-button">Cancel</button>
             </div>
             {isLoggedIn ?
             <form onSubmit={newComment} method='post' className="new-comment-form">
@@ -119,24 +148,31 @@ function Post(props) {
             <div className="comment-wrapper">
                 {comments.map((comment, i) => {
                     return(
-                        <div className='comment' key={comment.commentID}>
-                            <p className="comment-user">{comment.username}, {moment(new Date(comment.date)).fromNow()}</p>
-                            <p className="comment-content">{comment.content}</p>
-                            <div className="comment-bottom-wrapper">
-                                <div className="comment-likes-wrapper">
-                                    <img src={require(`./../assets/${comment.liked_by.includes(username) ? 'heart_full' : 'heart_empty'}.png`)} id={comment.commentID} onClick={likeOrDislikeComment} className='like-button' alt="like button" />
-                                    <p className="comment-likes">{comment.likes}</p>
-                                </div>
-                                {(username === comment.username) ?
-                                    <div className="post-options-wrapper">
-                                        <Link to={`/comments/edit/${comment.commentID}`} className="post-options">Edit</Link>
-                                        {/* <p onClick={showDeleteOption} className="post-options">Delete</p> */}
+                        <React.Fragment key={comment.commentID}>
+                            <div className='comment'>
+                                <p className="comment-user">{comment.username}, {moment(new Date(comment.date)).fromNow()}</p>
+                                <p className="comment-content">{comment.content}</p>
+                                <div className="comment-bottom-wrapper">
+                                    <div className="comment-likes-wrapper">
+                                        <img src={require(`./../assets/${comment.liked_by.includes(username) ? 'heart_full' : 'heart_empty'}.png`)} id={comment.commentID} onClick={likeOrDislikeComment} className='like-button' alt="like button" />
+                                        <p className="comment-likes">{comment.likes}</p>
                                     </div>
-                                    :
-                                    <div className="nothing"></div>
-                                }
+                                    {(username === comment.username) ?
+                                        <div className="post-options-wrapper">
+                                            <Link to={`/comments/edit/${comment.commentID}`} className="post-options">Edit</Link>
+                                            <p onClick={showDeleteCommentOption} className="post-options">Delete</p>
+                                        </div>
+                                        :
+                                        <div className="nothing"></div>
+                                    }
+                                </div>
                             </div>
-                        </div>
+                            <div className={`${deleteCommentClass}`}>
+                                <p className="delete-post-message">Are you sure you want to <span className='delete-word'>delete</span> this comment?</p>
+                                <button onClick={deleteComment} id={comment.commentID} className="delete-post-button">Delete</button>
+                                <button onClick={hideDeleteCommentOption} className="delete-post-button">Cancel</button>
+                            </div>>
+                        </React.Fragment>
                     )
                 })}
             </div>
