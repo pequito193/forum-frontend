@@ -171,7 +171,7 @@ function Post(props) {
                                 <p className="delete-post-message">Are you sure you want to <span className='delete-word'>delete</span> this comment?</p>
                                 <button onClick={deleteComment} id={comment.commentID} className="delete-post-button">Delete</button>
                                 <button onClick={hideDeleteCommentOption} className="delete-post-button">Cancel</button>
-                            </div>>
+                            </div>
                         </React.Fragment>
                     )
                 })}

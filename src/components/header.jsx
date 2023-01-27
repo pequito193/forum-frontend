@@ -18,7 +18,7 @@ function Header(props) {
                     </form>
                 </div>
                 <div className="header-wrapper">
-                    <p className="username">{username}</p>
+                    <Link to={'/user/settings'} className="username">{username}</Link>
                     <p className="links"><img className="settings" src={require('./../assets/settings.png')} alt="settings" /></p>
                 </div>
             </div>
