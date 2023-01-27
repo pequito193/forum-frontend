@@ -85,9 +85,11 @@
     filter: invert(100%);
 }
 
-.username {
+.username,
+.username:visited {
     color: rgb(230, 230, 230);
     font-size: 20px;
+    text-decoration: none;
 }
 
 @media (max-width: 500px) {
