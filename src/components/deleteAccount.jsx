@@ -5,7 +5,7 @@ import './../styles/logout.css';
 
 function DeleteAccount(props) {
 
-    const { username, JWT } = props;
+    const { JWT } = props;
 
     const navigate = useNavigate();
 
@@ -14,11 +14,11 @@ function DeleteAccount(props) {
             headers: {
                 Authorization: `Bearer ${JWT}`
             }
-            .then(response => {
-                if (response.data.message === 'Success') {
-                    navigate('/');
-                }
-            })
+        })
+        .then(response => {
+            if (response.data.message === 'Success') {
+                navigate('/');
+            }
         })
     }
 

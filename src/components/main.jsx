@@ -28,7 +28,7 @@ function Main(props) {
                         <Route exact path="/user/login" element={<Login isLoggedIn={isLoggedIn} errorMessage={errorMessage} login={login} />} />
                         <Route exact path="/user/logout" element={<Logout logout={logout} />} />
                         <Route exact path="/user/signup" element={<SignUp signup={signup} errorMessage={errorMessage} />} />
-                        <Route exact path="/user/delete" element={<DeleteAccount JWT={JWT} username={username} />} />
+                        <Route exact path="/user/delete" element={<DeleteAccount JWT={JWT} />} />
                         <Route exact path="/user/posts" element={<MyPosts likeOrDislikePost={likeOrDislikePost} JWT={JWT} username={username} isLoggedIn={isLoggedIn} />} />
                         <Route exact path="/posts/new" element={<NewPost JWT={JWT} />} />
                         <Route exact path="/posts/search" element={<PostListSearch username={username} search={search} likeOrDislikePost={likeOrDislikePost} isLoggedIn={isLoggedIn} />} />
