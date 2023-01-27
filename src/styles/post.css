@@ -118,7 +118,7 @@
     font-size: 20px;
 }
 
-.delete-button-visible {
+.delete-post-visible {
     display: flex;
     align-items: center;
     gap: 30px;
@@ -129,15 +129,21 @@
     color: rgb(233, 233, 233);
 }
 
-.delete-button-hidden {
+.delete-post-hidden {
+    display: none;
+}
+
+.delete-comment-visible {
     display: flex;
     align-items: center;
     gap: 30px;
-    margin-top: 20px;
     background-color: rgb(50, 50, 50);
     box-shadow: 0 0 6px inset rgb(35, 35, 35);
     padding: 32px 40px 26px;
     color: rgb(233, 233, 233);
+}
+
+.delete-comment-hidden {
     display: none;
 }
 
