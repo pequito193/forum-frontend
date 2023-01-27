@@ -10,7 +10,7 @@ function DeleteAccount(props) {
     const navigate = useNavigate();
 
     function deleteAccount() {
-        axios.post('/user/delete', {
+        axios.post('/user/delete', null, {
             headers: {
                 Authorization: `Bearer ${JWT}`
             }
@@ -26,7 +26,7 @@ function DeleteAccount(props) {
         <React.Fragment>
             <p className="logout-message">Are you sure you want to delete your account?</p>
             <div className="logout-form">
-                <button className="logout-button" onClick={deleteAccount}><Link className="logout-link" to={'/'}>Yes</Link></button>
+                <button className="logout-button" onClick={deleteAccount}>Yes</button>
                 <button className="logout-button"><Link className="logout-link" to={'/user'}>No</Link></button>
             </div>
         </React.Fragment>
