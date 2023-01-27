@@ -18,8 +18,8 @@ function Header(props) {
                     </form>
                 </div>
                 <div className="header-wrapper">
-                    <Link to={'/user/settings'} className="username">{username}</Link>
-                    <p className="links"><img className="settings" src={require('./../assets/settings.png')} alt="settings" /></p>
+                    <Link to={'/user'} className="username">{username}</Link>
+                    <Link to={'/user'} className="links"><img className="settings" src={require('./../assets/settings.png')} alt="settings" /></Link>
                 </div>
             </div>
             <SubHeader isLoggedIn={isLoggedIn} />
