@@ -17,6 +17,22 @@ function App() {
 
     const navigate = useNavigate();
 
+    // Delete account function
+    function deleteAccount() {
+        axios.post('/user/delete', null, {
+            headers: {
+                Authorization: `Bearer ${JWT}`
+            }
+        })
+        .then(response => {
+            if (response.data.message === 'Success') {
+                setJWT(undefined);
+                localStorage.removeItem('JWT');
+                navigate('/');
+            }
+        })
+    }
+
     // Login function, fetches a login JSON web token from the server and stores it
     function login(e) {
         e.preventDefault();
@@ -59,7 +75,7 @@ function App() {
     }
 
     // Logout function, deletes JSON web token
-    function logout(e) {
+    function logout() {
         setJWT(undefined);
         localStorage.removeItem('JWT');
         navigate('/');
@@ -176,7 +192,7 @@ function App() {
   return (
     <React.Fragment>
       <Header username={username} isLoggedIn={isLoggedIn} searchPost={searchPost} />
-      <Main likeOrDislikePost={likeOrDislikePost} likeOrDislikeComment={likeOrDislikeComment} username={username} errorMessage={errorMessage} isLoggedIn={isLoggedIn} JWT={JWT} login={login} signup={signup} logout={logout} search={search} />
+      <Main deleteAccount={deleteAccount} likeOrDislikePost={likeOrDislikePost} likeOrDislikeComment={likeOrDislikeComment} username={username} errorMessage={errorMessage} isLoggedIn={isLoggedIn} JWT={JWT} login={login} signup={signup} logout={logout} search={search} />
     </React.Fragment>
   );
 }
