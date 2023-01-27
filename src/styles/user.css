@@ -1,0 +1,23 @@
+.account-info-wrapper {
+    padding: 10px;
+}
+
+.account-info-title {
+    color: rgb(155, 155, 155);
+    font-size: 32px;
+    padding: 10px 0;
+    border-bottom: 1px solid rgb(71, 71, 71);
+    margin: 14px 0 30px;
+}
+
+.account-info {
+    color: rgb(233, 233, 233);
+    font-size: 16px;
+    line-height: 30px;
+}
+
+.delete-account-button,
+.delete-account-button:visited {
+    text-decoration: none;
+    margin-top: 10px;
+}
