@@ -28,7 +28,7 @@ function App() {
             if (response.data.message === 'Success') {
                 setJWT(undefined);
                 localStorage.removeItem('JWT');
-                navigate('/');
+                navigate('/forum-frontend/');
             }
         })
     }
@@ -65,7 +65,7 @@ function App() {
             .then(response => {
                 setErrorMessage(response.data.message);
                 if (response.data.result === 'Success') {
-                    navigate('/user/login');
+                    navigate('/forum-frontend/user/login');
                 }
             })
         }
@@ -78,7 +78,7 @@ function App() {
     function logout() {
         setJWT(undefined);
         localStorage.removeItem('JWT');
-        navigate('/');
+        navigate('/forum-frontend/');
     }
 
     // Function to search for a post
@@ -90,7 +90,7 @@ function App() {
             if (response.data.message === 'Success') {
                 e.target[1].value = '';
                 setSearch(response.data.postsFound);
-                navigate('/posts/search');
+                navigate('/forum-frontend/posts/search');
             }
         })
     }
