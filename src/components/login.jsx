@@ -12,7 +12,7 @@ function Login(props) {
 
     useEffect(() => {
         if (isLoggedIn) {
-            navigate('/forum-frontend/');
+            navigate('/');
         }
     }, [isLoggedIn, navigate])
     
@@ -25,7 +25,7 @@ function Login(props) {
                 <p className="error-message">{errorMessage}</p>
                 <div className="no-account">
                     <p className="question">Don't have an account yet?
-                        <Link to={'/forum-frontend/user/signup'} className='signup-link'> Sign Up </Link>
+                        <Link to={'/user/signup'} className='signup-link'> Sign Up </Link>
                     </p>
                 </div>
                 <button className="submit">Log In</button>

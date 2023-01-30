@@ -24,13 +24,13 @@ function PostListSearch(props) {
                                 {isLoggedIn ? 
                                 <img src={require(`./../assets/${post.liked_by.includes(username) ? 'heart_full' : 'heart_empty'}.png`)} id={post.id} onClick={likeOrDislikePost} className='like-button' alt="like button" />
                                 : 
-                                <Link to={'/forum-frontend/users/login'}>
+                                <Link to={'/users/login'}>
                                     <img src={require('./../assets/heart_empty.png')} id={post.id} onClick={likeOrDislikePost} className='like-button' alt="like button" />
                                 </Link>
                                 }
                                 <p className="post-likes">{post.likes}</p>
                             </div>
-                            <Link to={`/forum-frontend/posts/${post.id}`} className="post-info-wrapper">
+                            <Link to={`/posts/${post.id}`} className="post-info-wrapper">
                                 <p className="post-title">{post.title}</p>
                                 <p className="post-date">{post.username}, {moment(new Date(post.date)).fromNow()}</p>
                             </Link>

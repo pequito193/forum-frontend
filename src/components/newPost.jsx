@@ -22,7 +22,7 @@ function NewPost(props) {
         })
         .then(response => {
             if (response.data.message === 'Success') {
-                navigate('/forum-frontend/');
+                navigate('/');
             }
         })
     }
@@ -35,7 +35,7 @@ function NewPost(props) {
                 <textarea name='post' className="input" type='text' rows={16} placeholder="Write your post here..." required={true}/>
                 <div className="wrapper">
                     <button className="submit" type="submit">Create</button>
-                    <button className="submit" type='button'><Link className="no-underline" to={'/forum-frontend/'}>Cancel</Link></button>
+                    <button className="submit" type='button'><Link className="no-underline" to={'/'}>Cancel</Link></button>
                 </div>
             </form>
         </React.Fragment>

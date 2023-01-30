@@ -41,7 +41,7 @@ function User(props) {
                 )
             })}
             <h2 className="account-info-title">Account Actions</h2>
-            <Link to={'/forum-frontend/user/delete'} className="submit delete-account-button">Delete Account</Link>
+            <Link to={'/user/delete'} className="submit delete-account-button">Delete Account</Link>
         </div>
     )
 }

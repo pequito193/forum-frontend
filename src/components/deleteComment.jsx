@@ -33,7 +33,7 @@ function DeleteComment(props) {
         })
         .then(response => {
             if (response.data.message === 'Success') {
-                navigate(`/forum-frontend/posts/${postID}`)
+                navigate(`/posts/${postID}`)
             }
         })
     }
@@ -43,7 +43,7 @@ function DeleteComment(props) {
             <p className="logout-message">Are you sure you want to delete your comment?</p>
             <div className="logout-form">
                 <button className="logout-button" onClick={deleteComment}>Yes</button>
-                <button className="logout-button"><Link className="logout-link" to={`/forum-frontend/posts/${postID}`}>No</Link></button>
+                <button className="logout-button"><Link className="logout-link" to={`/posts/${postID}`}>No</Link></button>
             </div>
         </React.Fragment>
     )

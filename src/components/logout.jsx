@@ -11,7 +11,7 @@ function Logout(props) {
             <p className="logout-message">Are you sure you want to logout?</p>
             <div className="logout-form">
                 <button className="logout-button" onClick={logout}>Yes</button>
-                <button className="logout-button"><Link className="logout-link" to={'/forum-frontend/'}>No</Link></button>
+                <button className="logout-button"><Link className="logout-link" to={'/'}>No</Link></button>
             </div>
         </React.Fragment>
     )

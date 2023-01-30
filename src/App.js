@@ -28,7 +28,7 @@ function App() {
             if (response.data.message === 'Success') {
                 setJWT(undefined);
                 localStorage.removeItem('JWT');
-                navigate('/forum-frontend/');
+                navigate('/');
             }
         })
     }
@@ -36,49 +36,39 @@ function App() {
     // Login function, fetches a login JSON web token from the server and stores it
     function login(e) {
         e.preventDefault();
-        try {
-            axios.post('https://forum-api-production.up.railway.app/user/login', {
-                username: e.target[0].value,
-                password: e.target[1].value
-            })
-            .then(response => {
-                setErrorMessage(response.data.message);
-                setJWT(response.data.accessToken);
-            })
-        }
-        catch(error) {
-            console.log(error);
-        }
+        axios.post('https://forum-api-production.up.railway.app/user/login', {
+            username: e.target[0].value,
+            password: e.target[1].value
+        })
+        .then(response => {
+            setErrorMessage(response.data.message);
+            setJWT(response.data.accessToken);
+        })
     }
 
     // Create a new user
     function signup(e) {
         e.preventDefault();
-        try {
-            axios.post('https://forum-api-production.up.railway.app/user/signup', {
-                username: e.target[0].value,
-                username_lowercase: e.target[0].value.toLowerCase(),
-                email: e.target[1].value,
-                password: e.target[2].value,
-                confirmPassword: e.target[3].value
-            })
-            .then(response => {
-                setErrorMessage(response.data.message);
-                if (response.data.result === 'Success') {
-                    navigate('/forum-frontend/user/login');
-                }
-            })
-        }
-        catch(error) {
-            console.log(error);
-        }
+        axios.post('https://forum-api-production.up.railway.app/user/signup', {
+            username: e.target[0].value,
+            username_lowercase: e.target[0].value.toLowerCase(),
+            email: e.target[1].value,
+            password: e.target[2].value,
+            confirmPassword: e.target[3].value
+        })
+        .then(response => {
+            setErrorMessage(response.data.message);
+            if (response.data.result === 'Success') {
+                navigate('/user/login');
+            }
+        })
     }
 
     // Logout function, deletes JSON web token
     function logout() {
         setJWT(undefined);
         localStorage.removeItem('JWT');
-        navigate('/forum-frontend/');
+        navigate('/');
     }
 
     // Function to search for a post
@@ -90,7 +80,7 @@ function App() {
             if (response.data.message === 'Success') {
                 e.target[1].value = '';
                 setSearch(response.data.postsFound);
-                navigate('/forum-frontend/posts/search');
+                navigate('/posts/search');
             }
         })
     }
