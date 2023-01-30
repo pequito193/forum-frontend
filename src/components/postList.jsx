@@ -28,8 +28,8 @@ function PostList(props) {
                                 {isLoggedIn ? 
                                 <img src={require(`./../assets/${post.liked_by.includes(username) ? 'heart_full' : 'heart_empty'}.png`)} id={post.id} onClick={likeOrDislikePost} className='like-button' alt="like button" />
                                 : 
-                                <Link to={'/users/login'}>
-                                    <img src={require('./../assets/heart_empty.png')} id={post.id} onClick={likeOrDislikePost} className='like-button' alt="like button" />
+                                <Link to={'/user/login'}>
+                                    <img src={require('./../assets/heart_empty.png')} id={post.id} className='like-button' alt="like button" />
                                 </Link>
                                 }
                                 <p className="post-likes">{post.likes}</p>

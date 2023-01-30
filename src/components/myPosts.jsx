@@ -34,7 +34,6 @@ function MyPosts(props) {
                             <Link to={`/posts/${post.id}`} className="post-info-wrapper">
                                 <p className="post-title">{post.title}</p>
                                 <p className="post-date">{post.username}, {moment(new Date(post.date)).fromNow()}</p>
-
                             </Link>
                         </div>
                     )

@@ -118,10 +118,10 @@ function Post(props) {
                             {isLoggedIn ? 
                                 <img src={require(`./../assets/${post.liked_by.includes(username) ? 'heart_full' : 'heart_empty'}.png`)} id={post.id} onClick={likeOrDislikePost} className='like-button' alt="like button" />
                                 : 
-                                <Link to={'/users/login'}>
-                                    <img src={require('./../assets/heart_empty.png')} id={post.id} onClick={likeOrDislikePost} className='like-button' alt="like button" />
+                                <Link to={'/user/login'}>
+                                    <img src={require('./../assets/heart_empty.png')} id={post.id} className='like-button' alt="like button" />
                                 </Link>
-                                }
+                            }
                                 <p className="post-complete-likes">{post.likes}</p>
                             </div>
                             <p className="post-complete-date">{post.username}, {moment(new Date(post.date)).fromNow()}</p>
@@ -142,7 +142,7 @@ function Post(props) {
             </form>
             :
             <div className="new-comment-form">
-                <p className="new-comment-form-description"><Link to={'/users/login'} className='login-link'>Login</Link> to leave a comment!</p>
+                <p className="new-comment-form-description"><Link to={'/user/login'} className='login-link'>Login</Link> to leave a comment!</p>
             </div>
             }
             <div className="comment-wrapper">
@@ -154,7 +154,13 @@ function Post(props) {
                                 <p className="comment-content">{comment.content}</p>
                                 <div className="comment-bottom-wrapper">
                                     <div className="comment-likes-wrapper">
+                                    {isLoggedIn ? 
                                         <img src={require(`./../assets/${comment.liked_by.includes(username) ? 'heart_full' : 'heart_empty'}.png`)} id={comment.commentID} onClick={likeOrDislikeComment} className='like-button' alt="like button" />
+                                        : 
+                                        <Link to={'/user/login'}>
+                                            <img src={require('./../assets/heart_empty.png')} id={comment.commentID} className='like-button' alt="like button" />
+                                        </Link>
+                                    }
                                         <p className="comment-likes">{comment.likes}</p>
                                     </div>
                                     {(username === comment.username) ?
