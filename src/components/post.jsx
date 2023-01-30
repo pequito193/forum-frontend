@@ -13,7 +13,6 @@ function Post(props) {
     const [ post, setPost ] = useState([]);
     const [ comments, setComments ] = useState([]);
     const [ deletePostClass, setDeletePostClass ] = useState('delete-post-hidden');
-    const [ deleteCommentClass, setDeleteCommentClass ] = useState('delete-comment-hidden');
 
     const { id } = useParams();
     const navigate = useNavigate();
@@ -36,16 +35,6 @@ function Post(props) {
         setDeletePostClass('delete-post-hidden');
     }
 
-    // Shows delete comment option
-    function showDeleteCommentOption() {
-        setDeleteCommentClass('delete-comment-visible');
-    }
-
-    // Hides delete comment option
-    function hideDeleteCommentOption() {
-        setDeleteCommentClass('delete-comment-hidden')
-    }
-
     // Sends delete request to the server
     function deletePost(e) {
         axios.post('/posts/delete', {
@@ -58,22 +47,6 @@ function Post(props) {
         .then(response => {
             if (response.data.message === 'Success') {
                 navigate('/');
-            }
-        })
-    }
-    
-    // Sends delete request to the server
-    function deleteComment(e) {
-        axios.post('/comments/delete', {
-            commentID: e.target.id
-        }, {
-            headers: {
-                Authorization: `Bearer ${JWT}`
-            }
-        })
-        .then(response => {
-            if (response.data.message === 'Success') {
-                window.location.reload();;
             }
         })
     }
@@ -166,17 +139,12 @@ function Post(props) {
                                     {(username === comment.username) ?
                                         <div className="post-options-wrapper">
                                             <Link to={`/comments/edit/${comment.commentID}`} className="post-options">Edit</Link>
-                                            <p onClick={showDeleteCommentOption} className="post-options">Delete</p>
+                                            <Link to={`/comments/delete/${comment.commentID}`} className="post-options">Delete</Link>
                                         </div>
                                         :
                                         <div className="nothing"></div>
                                     }
                                 </div>
-                            </div>
-                            <div className={`${deleteCommentClass}`}>
-                                <p className="delete-post-message">Are you sure you want to <span className='delete-word'>delete</span> this comment?</p>
-                                <button onClick={deleteComment} id={comment.commentID} className="delete-post-button">Delete</button>
-                                <button onClick={hideDeleteCommentOption} className="delete-post-button">Cancel</button>
                             </div>
                         </React.Fragment>
                     )

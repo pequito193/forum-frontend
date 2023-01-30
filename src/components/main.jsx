@@ -13,6 +13,7 @@ import EditPost from "./editPost";
 import EditComment from "./editComment";
 import User from "./user";
 import DeleteAccount from "./deleteAccount";
+import DeleteComment from "./deleteComment";
 
 function Main(props) {
 
@@ -34,6 +35,7 @@ function Main(props) {
                         <Route exact path="/posts/search" element={<PostListSearch username={username} search={search} likeOrDislikePost={likeOrDislikePost} isLoggedIn={isLoggedIn} />} />
                         <Route exact path="/posts/edit/:id" element={<EditPost JWT={JWT} />} />
                         <Route exact path="/posts/:id" element={<Post username={username} likeOrDislikePost={likeOrDislikePost} likeOrDislikeComment={likeOrDislikeComment} JWT={JWT} isLoggedIn={isLoggedIn} />} />
+                        <Route exact path="/comments/delete/:id" element={<DeleteComment JWT={JWT} /> } />
                         <Route exact path="/comments/edit/:id" element={<EditComment JWT={JWT} />} />
                     </Routes>
                 </div>
