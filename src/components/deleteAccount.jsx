@@ -11,7 +11,7 @@ function DeleteAccount(props) {
             <p className="logout-message">Are you sure you want to delete your account?</p>
             <div className="logout-form">
                 <button className="logout-button" onClick={deleteAccount}>Yes</button>
-                <button className="logout-button"><Link className="logout-link" to={'/user'}>No</Link></button>
+                <button className="logout-button"><Link className="logout-link" to={'/forum-frontend/user'}>No</Link></button>
             </div>
         </React.Fragment>
     )

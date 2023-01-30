@@ -17,7 +17,7 @@ function SignUp(props) {
                 <p className="error-message">{errorMessage}</p>
                 <div className="no-account">
                     <p className="question">Already have an account?
-                        <Link to={'/user/login'} className='login-link'> Log In </Link>
+                        <Link to={'/forum-frontend/user/login'} className='login-link'> Log In </Link>
                     </p>
                 </div>
                 <button className="submit">Sign Up</button>

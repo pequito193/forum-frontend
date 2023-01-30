@@ -46,7 +46,7 @@ function Post(props) {
         })
         .then(response => {
             if (response.data.message === 'Success') {
-                navigate('/');
+                navigate('/forum-frontend/');
             }
         })
     }
@@ -78,7 +78,7 @@ function Post(props) {
                             <div className="post-complete-title">{post.title}</div>
                             {(username === post.username) ? 
                                 <div className="post-options-wrapper">
-                                    <Link to={`/posts/edit/${id}`} className="post-options">Edit</Link>
+                                    <Link to={`/forum-frontend/posts/edit/${id}`} className="post-options">Edit</Link>
                                     <p onClick={showDeletePostOption} className="post-options">Delete</p>
                                 </div>
                                 :
@@ -91,7 +91,7 @@ function Post(props) {
                             {isLoggedIn ? 
                                 <img src={require(`./../assets/${post.liked_by.includes(username) ? 'heart_full' : 'heart_empty'}.png`)} id={post.id} onClick={likeOrDislikePost} className='like-button' alt="like button" />
                                 : 
-                                <Link to={'/user/login'}>
+                                <Link to={'/forum-frontend/user/login'}>
                                     <img src={require('./../assets/heart_empty.png')} id={post.id} className='like-button' alt="like button" />
                                 </Link>
                             }
@@ -115,7 +115,7 @@ function Post(props) {
             </form>
             :
             <div className="new-comment-form">
-                <p className="new-comment-form-description"><Link to={'/user/login'} className='login-link'>Login</Link> to leave a comment!</p>
+                <p className="new-comment-form-description"><Link to={'/forum-frontend/user/login'} className='login-link'>Login</Link> to leave a comment!</p>
             </div>
             }
             <div className="comment-wrapper">
@@ -130,7 +130,7 @@ function Post(props) {
                                     {isLoggedIn ? 
                                         <img src={require(`./../assets/${comment.liked_by.includes(username) ? 'heart_full' : 'heart_empty'}.png`)} id={comment.commentID} onClick={likeOrDislikeComment} className='like-button' alt="like button" />
                                         : 
-                                        <Link to={'/user/login'}>
+                                        <Link to={'/forum-frontend/user/login'}>
                                             <img src={require('./../assets/heart_empty.png')} id={comment.commentID} className='like-button' alt="like button" />
                                         </Link>
                                     }
@@ -138,8 +138,8 @@ function Post(props) {
                                     </div>
                                     {(username === comment.username) ?
                                         <div className="post-options-wrapper">
-                                            <Link to={`/comments/edit/${comment.commentID}`} className="post-options">Edit</Link>
-                                            <Link to={`/comments/delete/${comment.commentID}`} className="post-options">Delete</Link>
+                                            <Link to={`/forum-frontend/comments/edit/${comment.commentID}`} className="post-options">Edit</Link>
+                                            <Link to={`/forum-frontend/comments/delete/${comment.commentID}`} className="post-options">Delete</Link>
                                         </div>
                                         :
                                         <div className="nothing"></div>

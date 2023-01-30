@@ -36,7 +36,7 @@ function EditComment(props) {
         })
         .then(response => {
             if (response.data.message === 'Success') {
-                navigate(`/posts/${postID}`);
+                navigate(`/forum-frontend/posts/${postID}`);
             }
         })
     }
@@ -51,7 +51,7 @@ function EditComment(props) {
                             <textarea name="new-comment-input" className="new-comment-input" id="" cols="30" rows="4" required={true} defaultValue={comment.content}></textarea>
                             <div className="wrapper">
                                 <button className="submit" type="submit">Edit</button>
-                                <button className="submit" type='button'><Link className="no-underline" to={`/posts/${postID}`}>Cancel</Link></button>
+                                <button className="submit" type='button'><Link className="no-underline" to={`/forum-frontend/posts/${postID}`}>Cancel</Link></button>
                             </div>
                         </form>
                     </div>
