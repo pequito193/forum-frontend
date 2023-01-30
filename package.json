@@ -2,7 +2,6 @@
   "name": "forum-frontend",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://forum-api-production.up.railway.app",
   "homepage": "https://pequito193.github.io/forum-frontend/",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",

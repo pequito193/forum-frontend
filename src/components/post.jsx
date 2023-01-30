@@ -18,7 +18,7 @@ function Post(props) {
     const navigate = useNavigate();
 
     useEffect(() => {
-        axios.get(`/posts/${id}`)
+        axios.get(`https://forum-api-production.up.railway.app/posts/${id}`)
         .then(response => {
             setPost(response.data.post);
             setComments(response.data.comments);
@@ -37,7 +37,7 @@ function Post(props) {
 
     // Sends delete request to the server
     function deletePost(e) {
-        axios.post('/posts/delete', {
+        axios.post('https://forum-api-production.up.railway.app/posts/delete', {
             id: id
         }, {
             headers: {
@@ -54,7 +54,7 @@ function Post(props) {
     // Handles the creation of a new comment
     function newComment(e) {
         e.preventDefault();
-        axios.post('/comments/new', {
+        axios.post('https://forum-api-production.up.railway.app/comments/new', {
             postID: id,
             content: e.target[0].value
         }, {

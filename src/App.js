@@ -19,7 +19,7 @@ function App() {
 
     // Delete account function
     function deleteAccount() {
-        axios.post('/user/delete', null, {
+        axios.post('https://forum-api-production.up.railway.app/user/delete', null, {
             headers: {
                 Authorization: `Bearer ${JWT}`
             }
@@ -37,7 +37,7 @@ function App() {
     function login(e) {
         e.preventDefault();
         try {
-            axios.post('/user/login', {
+            axios.post('https://forum-api-production.up.railway.app/user/login', {
                 username: e.target[0].value,
                 password: e.target[1].value
             })
@@ -55,7 +55,7 @@ function App() {
     function signup(e) {
         e.preventDefault();
         try {
-            axios.post('/user/signup', {
+            axios.post('https://forum-api-production.up.railway.app/user/signup', {
                 username: e.target[0].value,
                 username_lowercase: e.target[0].value.toLowerCase(),
                 email: e.target[1].value,
@@ -85,7 +85,7 @@ function App() {
     function searchPost(e) {
         e.preventDefault();
         const searchParams = e.target[1].value;
-        axios.get(`/posts/search/${searchParams}`)
+        axios.get(`https://forum-api-production.up.railway.app/posts/search/${searchParams}`)
         .then(response => {
             if (response.data.message === 'Success') {
                 e.target[1].value = '';
@@ -100,7 +100,7 @@ function App() {
         const image = e.target.src;
         const id = e.target.id;
         if (image.match(/\/media\/(.*?)\./)[1] === 'heart_empty') {
-            axios.post('/posts/likes/', {
+            axios.post('https://forum-api-production.up.railway.app/posts/likes/', {
                 id: id,
                 info: 'Like'
             }, {
@@ -115,7 +115,7 @@ function App() {
             })
         }
         else if (image.match(/\/media\/(.*?)\./)[1] === 'heart_full') {
-            axios.post('/posts/likes/', {
+            axios.post('https://forum-api-production.up.railway.app/posts/likes/', {
                 id: id,
                 info: 'Dislike'
             }, {
@@ -136,7 +136,7 @@ function App() {
         const image = e.target.src;
         const id = e.target.id;
         if (image.match(/\/media\/(.*?)\./)[1] === 'heart_empty') {
-            axios.post('/comments/likes/', {
+            axios.post('https://forum-api-production.up.railway.app/comments/likes/', {
                 id: id,
                 info: 'Like'
             }, {
@@ -151,7 +151,7 @@ function App() {
             })
         }
         else if (image.match(/\/media\/(.*?)\./)[1] === 'heart_full') {
-            axios.post('/comments/likes/', {
+            axios.post('https://forum-api-production.up.railway.app/comments/likes/', {
                 id: id,
                 info: 'Dislike'
             }, {

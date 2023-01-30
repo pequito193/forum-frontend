@@ -14,7 +14,7 @@ function EditPost(props) {
     const { id } = useParams();
 
     useEffect(() => {
-        axios.get(`/posts/${id}`)
+        axios.get(`https://forum-api-production.up.railway.app/posts/${id}`)
         .then(response => {
             setPost(response.data.post);
         })
@@ -25,7 +25,7 @@ function EditPost(props) {
         e.preventDefault();
         const newTitle = e.target[0].value;
         const newContent = e.target[1].value;
-        axios.post('/posts/edit', {
+        axios.post('https://forum-api-production.up.railway.app/posts/edit', {
             id: id,
             title: newTitle,
             content: newContent

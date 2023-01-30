@@ -11,7 +11,7 @@ function MyPosts(props) {
     const [ posts, setPosts ] = useState([]);
 
     useEffect(() => {
-        axios.get('/posts/users/', {
+        axios.get('https://forum-api-production.up.railway.app/posts/users/', {
             headers: {
                 Authorization: `Bearer ${JWT}`
             }

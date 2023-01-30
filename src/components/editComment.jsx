@@ -15,7 +15,7 @@ function EditComment(props) {
     const { id } = useParams();
 
     useEffect(() => {
-        axios.get(`/comments/${id}`)
+        axios.get(`https://forum-api-production.up.railway.app/comments/${id}`)
         .then(response => {
             setComment(response.data.comment);
             setPostID(response.data.postID);
@@ -26,7 +26,7 @@ function EditComment(props) {
     function editComment(e) {
         e.preventDefault();
         const newComment = e.target[0].value;
-        axios.post('/comments/edit', {
+        axios.post('https://forum-api-production.up.railway.app/comments/edit', {
             commentID: id,
             content: newComment
         }, {

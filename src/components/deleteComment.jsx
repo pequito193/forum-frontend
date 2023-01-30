@@ -15,7 +15,7 @@ function DeleteComment(props) {
     const { id } = useParams();
 
     useEffect(() => {
-        axios.get(`/comments/${id}`)
+        axios.get(`https://forum-api-production.up.railway.app/comments/${id}`)
         .then(response => {
             console.log(response.data)
             setPostID(response.data.postID);
@@ -24,7 +24,7 @@ function DeleteComment(props) {
 
     // Sends delete request to the server
     function deleteComment() {
-        axios.post('/comments/delete', {
+        axios.post('https://forum-api-production.up.railway.app/comments/delete', {
             commentID: id
         }, {
             headers: {

@@ -14,7 +14,7 @@ function User(props) {
     const [ commentCount , setCommentCount ] = useState();    
 
     useEffect(() => {
-        axios.get('/user', {
+        axios.get('https://forum-api-production.up.railway.app/user', {
             headers: {
                 Authorization: `Bearer ${JWT}`
             }

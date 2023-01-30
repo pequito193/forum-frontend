@@ -12,24 +12,19 @@ function NewPost(props) {
 
     function newPost(e) {
         e.preventDefault();
-        try {
-            axios.post('/posts/new', {
-                title: e.target[0].value,
-                content: e.target[1].value
-            }, {
-                headers: {
-                    Authorization: `Bearer ${JWT}`
-                }
-            })
-            .then(response => {
-                if (response.data.message === 'Success') {
-                    navigate('/forum-frontend/');
-                }
-            })
-        }
-        catch(error) {
-            console.log(error);
-        }
+        axios.post('https://forum-api-production.up.railway.app/posts/new', {
+            title: e.target[0].value,
+            content: e.target[1].value
+        }, {
+            headers: {
+                Authorization: `Bearer ${JWT}`
+            }
+        })
+        .then(response => {
+            if (response.data.message === 'Success') {
+                navigate('/forum-frontend/');
+            }
+        })
     }
 
     return (

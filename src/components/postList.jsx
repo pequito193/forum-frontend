@@ -12,7 +12,7 @@ function PostList(props) {
     const [ posts, setPosts ] = useState([])
 
     useEffect(() => {
-        axios.get('/posts/')
+        axios.get('https://forum-api-production.up.railway.app/posts/')
         .then(response => {
             setPosts(response.data.posts)
         })
