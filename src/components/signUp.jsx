@@ -10,7 +10,7 @@ function SignUp(props) {
         <React.Fragment>
             <h1 className="signup-title">Sign Up</h1>
             <form className="signup-form" method='post' onSubmit={signup}>
-                <input className="input" name="username" type="text" placeholder="Username" required={true}/>
+                <input className="input" name="username" type="text" placeholder="Username" required={true} max='20' />
                 <input className="input" name="email" type="email" placeholder="Email" required={true}/>
                 <input className="input" name="password" type="password" placeholder="Password" required={true}/>
                 <input className="input" name="confirmPassword" type="password" placeholder="Confirm Password" required={true}/>
