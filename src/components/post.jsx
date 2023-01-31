@@ -104,8 +104,10 @@ function Post(props) {
             })}
             <div className={`${deletePostClass}`}>
                 <p className="delete-post-message">Are you sure you want to <span className='delete-word'>delete</span> this post?</p>
-                <button onClick={deletePost} className="delete-post-button">Delete</button>
-                <button onClick={hideDeletePostOption} className="delete-post-button">Cancel</button>
+                <div className="delete-button-wrapper">
+                    <button onClick={deletePost} className="delete-post-button">Delete</button>
+                    <button onClick={hideDeletePostOption} className="delete-post-button">Cancel</button>
+                </div>
             </div>
             {isLoggedIn ?
             <form onSubmit={newComment} method='post' className="new-comment-form">
