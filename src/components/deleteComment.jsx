@@ -17,7 +17,6 @@ function DeleteComment(props) {
     useEffect(() => {
         axios.get(`https://forum-api-production.up.railway.app/comments/${id}`)
         .then(response => {
-            console.log(response.data)
             setPostID(response.data.postID);
         })
     }, [])
